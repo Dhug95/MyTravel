@@ -4,32 +4,35 @@
     android:layout_height="match_parent"
     android:background="@drawable/new_login_gradients"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/default_padding"
-    android:paddingLeft="@dimen/default_padding"
-    android:paddingRight="@dimen/default_padding"
-    android:paddingTop="70dp">
+    android:paddingBottom="@dimen/home_padding"
+    android:paddingEnd="@dimen/home_padding"
+    android:paddingStart="@dimen/home_padding"
+    android:paddingTop="@dimen/home_padding">
 
 
     <ImageView
+        android:id="@+id/appLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/logo_content"
-        android:padding="@dimen/default_padding"
+        android:paddingBottom="@dimen/default_padding"
+        android:paddingTop="@dimen/default_padding"
         android:src="@drawable/logo" />
 
     <EditText
+        android:id="@+id/email_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_person_white_24dp"
         android:drawablePadding="12dp"
-        android:hint="@string/username"
+        android:drawableStart="@drawable/ic_person_white_24dp"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="8dp"
         android:textColor="#fff"
-        android:textColorHint="#fff" />
+        android:textColorHint="@color/colorFields" />
 
     <View
         android:layout_width="match_parent"
@@ -37,18 +40,19 @@
         android:background="#fff" />
 
     <EditText
+        android:id="@+id/psw_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_lock_white_24dp"
         android:drawablePadding="12dp"
+        android:drawableStart="@drawable/ic_lock_white_24dp"
         android:hint="@string/psw_hint"
         android:inputType="textPassword"
         android:maxLines="1"
         android:padding="8dp"
         android:textColor="#fff"
-        android:textColorHint="#fff" />
+        android:textColorHint="@color/colorFields" />
 
     <View
         android:layout_width="match_parent"
@@ -56,6 +60,7 @@
         android:background="#fff" />
 
     <CheckBox
+        android:id="@+id/remember_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -64,6 +69,7 @@
         android:textColor="#fff" />
 
     <Button
+        android:id="@+id/login_button"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,34 +77,37 @@
         android:background="@drawable/background_login"
         android:clickable="true"
         android:focusable="true"
-        android:padding="16dp"
+        android:padding="@dimen/default_padding"
         android:text="@string/log_in"
         android:textAllCaps="false"
-        android:textColor="@color/logoColor"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp" />
 
     <Button
+        android:id="@+id/signup_button"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/default_padding"
         android:background="@drawable/background_signup"
         android:clickable="true"
         android:focusable="true"
-        android:padding="16dp"
+        android:onClick="launchSignUpActivity"
+        android:padding="@dimen/default_padding"
         android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="18sp" />
 
     <TextView
+        android:id="@+id/forgot_psw"
         style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:padding="16dp"
+        android:padding="@dimen/default_padding"
         android:text="@string/forget_your_password"
         android:textColor="#fff" />
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/home_padding"
+    tools:context=".SignUpActivity">
+
+    <EditText
+        android:id="@+id/email_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/username_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/username"
+        android:inputType="textEmailAddress"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/psw_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/psw_hint"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/psw_signup_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/psw_hint"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/signup_button"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/home_padding"
+        android:background="@drawable/background_signup"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/default_padding"
+        android:text="@string/create_account"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+</LinearLayout>
