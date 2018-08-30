@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyTravel</string>
+    <string name="logo_content">This is the app logo</string>
+    <string name="username">Username</string>
+    <string name="psw_hint">*********</string>
+    <string name="remember_me">Remember me</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="forget_your_password">Forget your Password?</string>
+</resources>
