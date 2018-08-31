@@ -17,4 +17,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
+
+    public void launchHomeActivity(View view) {
+        Intent intent = new Intent(this, LoggedHomeActivity.class);
+        startActivity(intent);
+    }
 }

@@ -23,7 +23,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorSecondary" />
 
     <EditText
         android:id="@+id/username_signup"
@@ -41,7 +41,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorSecondary" />
 
     <EditText
         android:id="@+id/psw_signup"
@@ -50,7 +50,7 @@
         android:layout_marginTop="@dimen/default_padding"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
-        android:hint="@string/psw_hint"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:padding="8dp"
@@ -60,7 +60,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorSecondary" />
 
     <EditText
         android:id="@+id/psw_signup_confirm"
@@ -69,7 +69,7 @@
         android:layout_marginTop="@dimen/default_padding"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
-        android:hint="@string/psw_hint"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:padding="8dp"
@@ -79,7 +79,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorSecondary" />
 
     <Button
         android:id="@+id/signup_button"

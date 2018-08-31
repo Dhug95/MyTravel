@@ -9,4 +9,13 @@
     <string name="forget_your_password">Forget your Password?</string>
     <string name="email">Email</string>
     <string name="create_account">Create account</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="title_activity_logged_home">LoggedHomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_add_trip">Add a trip</string>
+    <string name="title_trips">My trips</string>
+    <string name="title_profile">My profile</string>
 </resources>

@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="8dp"
+        android:layout_marginBottom="@dimen/default_padding"
         android:text="@string/remember_me"
         android:textColor="#fff" />
 
@@ -79,6 +80,7 @@
         android:focusable="true"
         android:padding="@dimen/default_padding"
         android:text="@string/log_in"
+        android:onClick="launchHomeActivity"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp" />
@@ -104,6 +106,7 @@
         style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
