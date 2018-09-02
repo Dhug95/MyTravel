@@ -93,6 +93,7 @@
         android:padding="@dimen/default_padding"
         android:text="@string/create_account"
         android:textAllCaps="false"
+        android:onClick="checkDataEntered"
         android:textColor="#fff"
         android:textSize="18sp" />
 

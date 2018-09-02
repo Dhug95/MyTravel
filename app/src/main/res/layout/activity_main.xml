@@ -80,7 +80,7 @@
         android:focusable="true"
         android:padding="@dimen/default_padding"
         android:text="@string/log_in"
-        android:onClick="launchHomeActivity"
+        android:onClick="checkDataEntered"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp" />
