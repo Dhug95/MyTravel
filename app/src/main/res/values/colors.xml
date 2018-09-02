@@ -5,4 +5,6 @@
     <color name="colorSecondary">#ff9100</color>
     <color name="colorAccent">@color/colorPrimary</color>
     <color name="colorFields">#d1d1d1</color>
+    <color name="colorProfile">#8f8f8f</color>
+    <color name="colorRed">#c92929</color>
 </resources>

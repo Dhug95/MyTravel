@@ -11,6 +11,8 @@ public class SendAccountCreation extends AsyncTask<String, Void, String> {
 
     public static final String EXTRA_MESSAGE =
             "com.example.francesco.mytravel.extra.MESSAGE";
+    private String email;
+    private String password;
 
     private Context mContext;
 
@@ -20,6 +22,8 @@ public class SendAccountCreation extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... strings) {
+        email = strings[0];
+        password = strings[2];
         return NetworkUtils.getSignUpResponse(strings[0], strings[1], strings[2]);
     }
 
@@ -37,14 +41,11 @@ public class SendAccountCreation extends AsyncTask<String, Void, String> {
                 success = jsonObject.getString("success");
                 message = jsonObject.getString("message");
 
-                Toast t = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
-                t.show();
-
-                if (success.equals("true")) { // Go to the home
-                    Intent intent = new Intent(mContext, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(EXTRA_MESSAGE, s);
-                    mContext.startActivity(intent);
+                if (success.equals("true")) { // Go to the logged home
+                    new SendLoginData(mContext).execute(email, password);
+                } else {
+                    Toast t = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
+                    t.show();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

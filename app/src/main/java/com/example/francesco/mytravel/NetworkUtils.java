@@ -18,6 +18,7 @@ public class NetworkUtils {
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
+    private static final String TOKEN = "token";
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     static String getSignUpResponse(String email, String username, String password) {
@@ -39,6 +40,16 @@ public class NetworkUtils {
                 .build();
 
         return sendRequest(builtURI, "POST");
+    }
+
+
+    public static String getProfileInfo(String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/myprofile").buildUpon()
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "GET");
     }
 
     private static String sendRequest(Uri builtURI, String method) {
