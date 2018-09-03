@@ -37,9 +37,6 @@ public class SendLoginData extends AsyncTask<String, Void, String> {
                 success = jsonObject.getString("success");
                 message = jsonObject.getString("message");
 
-                Toast t = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
-                t.show();
-
                 if (success.equals("true")) {
                     // Show the token
                     token = jsonObject.getString("token");
@@ -49,7 +46,9 @@ public class SendLoginData extends AsyncTask<String, Void, String> {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(TOKEN, token);
                     mContext.startActivity(intent);
-
+                } else {
+                    Toast t = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
+                    t.show();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
