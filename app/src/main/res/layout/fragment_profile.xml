@@ -77,7 +77,6 @@
         android:focusable="true"
         android:padding="@dimen/default_padding"
         android:text="@string/logout"
-        android:onClick="logOut"
         android:textAllCaps="false"
         android:layout_below="@id/email"
         android:layout_centerHorizontal="true"
