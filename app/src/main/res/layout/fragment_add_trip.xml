@@ -28,7 +28,7 @@
         android:id="@+id/internal_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/trip_name_create"
+        android:layout_below="@+id/end_text"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
@@ -74,18 +74,55 @@
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:drawableStart="@drawable/ic_add_white_24dp"
-        android:layout_marginBottom="24dp"
         android:layout_below="@id/internal_linear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/background_create"
         android:clickable="true"
+        android:drawableStart="@drawable/ic_add_white_24dp"
         android:focusable="true"
         android:padding="@dimen/default_padding"
         android:text="@string/add_to_the_list"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/start_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/start"
+        android:layout_below="@id/trip_name_create"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:id="@+id/start_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/start_text"
+        android:background="@color/colorSecondary" />
+
+    <TextView
+        android:id="@+id/end_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/end"
+        android:layout_below="@id/start_line"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/end_text"
+        android:background="@color/colorSecondary" />
 
 
 </RelativeLayout>

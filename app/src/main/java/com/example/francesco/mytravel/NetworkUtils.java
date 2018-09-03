@@ -19,6 +19,9 @@ public class NetworkUtils {
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String TOKEN = "token";
+    private static final String NAME = "name";
+    private static final String START = "start";
+    private static final String END = "end";
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     static String getSignUpResponse(String email, String username, String password) {
@@ -50,6 +53,18 @@ public class NetworkUtils {
                 .build();
 
         return sendRequest(builtURI, "GET");
+    }
+
+    public static String getTripResponse(String name, String start, String end, String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
+                .appendQueryParameter(NAME, name)
+                .appendQueryParameter(START, start)
+                .appendQueryParameter(END, end)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "POST");
     }
 
     private static String sendRequest(Uri builtURI, String method) {
@@ -116,4 +131,5 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
+
 }

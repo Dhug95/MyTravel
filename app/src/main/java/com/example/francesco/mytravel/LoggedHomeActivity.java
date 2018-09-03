@@ -19,6 +19,12 @@ public class LoggedHomeActivity extends AppCompatActivity {
     private static final String TOKEN =
             "com.example.francesco.mytravel.extra.TOKEN";
 
+    private static final String START =
+            "com.example.francesco.mytravel.extra.START_DAY";
+
+    private static final String END =
+            "com.example.francesco.mytravel.extra.END_DAY";
+
     private AddTripFragment addTripFragment;
     private TripsFragment tripsFragment;
     private ProfileFragment profileFragment;
@@ -83,9 +89,20 @@ public class LoggedHomeActivity extends AppCompatActivity {
         String day_string = Integer.toString(day);
         String year_string = Integer.toString(year);
         // Assign the concatenated strings to dateMessage.
-        String dateMessage = (month_string + "/" +
-                day_string + "/" + year_string);
-        Toast.makeText(this, tag + ": " + dateMessage,
-                Toast.LENGTH_SHORT).show();
+        String dateMessage = (day_string + "/" +
+                month_string + "/" + year_string);
+
+        /*Toast.makeText(this, tag + ": " + dateMessage,
+                Toast.LENGTH_SHORT).show();*/
+
+        if (tag.equals("Start date")) {
+            bundle.putString(START, dateMessage);
+        } else if (tag.equals("End date")) {
+            bundle.putString(END, dateMessage);
+        }
+
+        addTripFragment = new AddTripFragment();
+        addTripFragment.setArguments(bundle);
+        setFragment(addTripFragment);
     }
 }

@@ -25,4 +25,6 @@
     <string name="start_date">Start date</string>
     <string name="end_date">End date</string>
     <string name="add_to_the_list">Add to the list</string>
+    <string name="start">Start:</string>
+    <string name="end">End:</string>
 </resources>
