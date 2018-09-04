@@ -18,6 +18,7 @@ public class NetworkUtils {
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
+    private static final String OLD_PASSWORD = "old_password";
     private static final String TOKEN = "token";
     private static final String NAME = "name";
     private static final String START = "start";
@@ -74,6 +75,20 @@ public class NetworkUtils {
                 .build();
 
         return sendRequest(builtURI, "GET");
+    }
+
+    public static String sendProfileUpdate(String username, String email, String oldpsw,
+                                           String newpsw, String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/myprofile").buildUpon()
+                .appendQueryParameter(USERNAME, username)
+                .appendQueryParameter(EMAIL, email)
+                .appendQueryParameter(OLD_PASSWORD, oldpsw)
+                .appendQueryParameter(PASSWORD, newpsw)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "PUT");
     }
 
     private static String sendRequest(Uri builtURI, String method) {

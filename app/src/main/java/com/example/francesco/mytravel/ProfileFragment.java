@@ -21,6 +21,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TOKEN =
             "com.example.francesco.mytravel.extra.TOKEN";
 
+    private String token;
+
+    private Intent intent;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -29,7 +33,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String token = getArguments().getString(TOKEN);
+        token = getArguments().getString(TOKEN);
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
@@ -51,13 +55,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.logout_button:
-                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent = new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.fab_profile:
-                Toast toast = Toast.makeText(getContext(), "FAB del profilo", Toast.LENGTH_LONG);
-                toast.show();
+                Intent intent = new Intent(getContext(), UpdateUserActivity.class);
+                intent.putExtra(TOKEN, token);
+                startActivity(intent);
                 break;
 
             default:

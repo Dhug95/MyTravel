@@ -6,5 +6,6 @@
     <color name="colorAccent">@color/colorPrimary</color>
     <color name="colorFields">#d1d1d1</color>
     <color name="colorProfile">#8f8f8f</color>
+    <color name="colorGreen">#00ff00</color>
     <color name="colorRed">#c92929</color>
 </resources>

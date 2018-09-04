@@ -9,7 +9,6 @@
     <string name="forget_your_password">Forget your Password?</string>
     <string name="email">Email</string>
     <string name="create_account">Create account</string>
-    <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="title_activity_logged_home">LoggedHomeActivity</string>
     <string name="title_home">Home</string>
@@ -27,4 +26,10 @@
     <string name="add_to_the_list">Add to the list</string>
     <string name="start">Start:</string>
     <string name="end">End:</string>
+    <string name="title_activity_update_user">UpdateUserActivity</string>
+    <string name="password">Password</string>
+    <string name="new_email">New email</string>
+    <string name="new_username">New username</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
 </resources>

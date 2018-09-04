@@ -29,7 +29,16 @@
         </activity>
         <activity
             android:name=".LoggedHomeActivity"
-            android:label="Home page" />
+            android:label="Home page"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".UpdateUserActivity"
+            android:label="@string/title_activity_update_user"
+            android:parentActivityName=".LoggedHomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.francesco.mytravel.LoggedHomeActivity" />
+        </activity>
     </application>
 
 </manifest>

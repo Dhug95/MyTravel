@@ -30,6 +30,7 @@ public class LoggedHomeActivity extends AppCompatActivity {
     private ProfileFragment profileFragment;
 
     private Bundle bundle;
+    private String token;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -62,12 +63,28 @@ public class LoggedHomeActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("Actual token", token);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        token = savedInstanceState.getString("Actual token");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_home);
 
         Intent intent = getIntent();
-        String token = intent.getStringExtra(TOKEN);
+        token = intent.getStringExtra(TOKEN);
+
+        if (savedInstanceState != null) {
+            token = savedInstanceState.getString("Actual token");
+        }
 
         bundle = new Bundle();
         bundle.putString(TOKEN, token);

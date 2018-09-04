@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/home_padding">
+
+    <EditText
+        android:id="@+id/new_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/new_username"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:id="@+id/username_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/new_username"
+        android:background="@color/colorSecondary" />
+
+    <EditText
+        android:id="@+id/new_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username_line"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/new_email"
+        android:inputType="textEmailAddress"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:id="@+id/email_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/new_email"
+        android:background="@color/colorSecondary" />
+
+    <EditText
+        android:id="@+id/old_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_line"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/old_password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:id="@+id/old_psw_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/old_psw"
+        android:background="@color/colorSecondary" />
+
+    <EditText
+        android:id="@+id/new_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/old_psw_line"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/new_password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:id="@+id/confirm_new_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/new_psw"
+        android:background="@color/colorSecondary" />
+
+    <EditText
+        android:id="@+id/confirm_new_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_new_line"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <View
+        android:id="@+id/new_psw_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/confirm_new_psw"
+        android:background="@color/colorSecondary" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="sendUserUpdate"
+        app:backgroundTint="@color/colorGreen"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_done_white_24dp" />
+
+</RelativeLayout>
