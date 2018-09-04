@@ -67,6 +67,15 @@ public class NetworkUtils {
         return sendRequest(builtURI, "POST");
     }
 
+    public static String getTripList(String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/mytrips").buildUpon()
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;

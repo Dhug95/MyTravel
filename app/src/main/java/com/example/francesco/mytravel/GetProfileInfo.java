@@ -28,6 +28,8 @@ public class GetProfileInfo extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
+
         try {
             JSONObject jsonObject = new JSONObject(s);
             String info = jsonObject.toString();
