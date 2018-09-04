@@ -39,6 +39,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.francesco.mytravel.LoggedHomeActivity" />
         </activity>
+        <activity
+            android:name=".TripPageActivity"
+            android:parentActivityName=".LoggedHomeActivity" />
     </application>
 
 </manifest>

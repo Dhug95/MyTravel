@@ -91,6 +91,15 @@ public class NetworkUtils {
         return sendRequest(builtURI, "PUT");
     }
 
+    public static String getTripPage(String trip_id, String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id).buildUpon()
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -155,5 +164,4 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
-
 }

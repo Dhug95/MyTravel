@@ -1,6 +1,7 @@
 package com.example.francesco.mytravel;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,7 +27,7 @@ public class TripsFragment extends Fragment {
     private static final String TOKEN =
             "com.example.francesco.mytravel.extra.TOKEN";
 
-    private String token;
+    private static String token;
 
     private final LinkedList<TripItem> mTripList = new LinkedList<>();
 
@@ -56,4 +57,8 @@ public class TripsFragment extends Fragment {
         return v;
     }
 
+
+    public static String getToken() {
+        return token;
+    }
 }
