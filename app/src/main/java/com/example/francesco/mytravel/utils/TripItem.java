@@ -1,4 +1,4 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.utils;
 
 public class TripItem {
 

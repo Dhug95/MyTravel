@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,28 +20,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.SignUpActivity"
             android:label="Sign Up"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.francesco.mytravel.MainActivity" />
+                android:value="com.example.francesco.mytravel.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".LoggedHomeActivity"
+            android:name=".activities.LoggedHomeActivity"
             android:label="Home page"
             android:launchMode="singleTop" />
         <activity
-            android:name=".UpdateUserActivity"
+            android:name=".activities.UpdateUserActivity"
             android:label="@string/title_activity_update_user"
-            android:parentActivityName=".LoggedHomeActivity">
+            android:parentActivityName=".activities.LoggedHomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.francesco.mytravel.LoggedHomeActivity" />
+                android:value="com.example.francesco.mytravel.activities.LoggedHomeActivity" />
         </activity>
         <activity
-            android:name=".TripPageActivity"
-            android:parentActivityName=".LoggedHomeActivity" />
+            android:name=".activities.TripPageActivity"
+            android:parentActivityName=".activities.LoggedHomeActivity" />
     </application>
 
 </manifest>

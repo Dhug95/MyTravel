@@ -1,4 +1,4 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.tasks.SendAccountCreation;
 
 public class SignUpActivity extends AppCompatActivity {
 

@@ -1,9 +1,10 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.example.francesco.mytravel.utils.NetworkUtils;
 
 import org.json.JSONObject;
 

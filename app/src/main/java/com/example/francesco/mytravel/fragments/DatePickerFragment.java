@@ -1,4 +1,4 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.fragments;
 
 
 import android.app.DatePickerDialog;
@@ -7,12 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.TextView;
+
+import com.example.francesco.mytravel.activities.LoggedHomeActivity;
 
 import java.util.Calendar;
 

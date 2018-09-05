@@ -1,27 +1,33 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.example.francesco.mytravel.utils.NetworkUtils;
+
 import org.json.JSONObject;
 
-public class SendLoginData extends AsyncTask<String, Void, String> {
+public class SendAccountCreation extends AsyncTask<String, Void, String> {
 
-    private static final String TOKEN =
-            "com.example.francesco.mytravel.extra.TOKEN";
+    public static final String EXTRA_MESSAGE =
+            "com.example.francesco.mytravel.extra.MESSAGE";
+    private String email;
+    private String password;
 
     private Context mContext;
 
-    public SendLoginData(Context mContext) {
+    public SendAccountCreation(Context mContext) {
         this.mContext = mContext;
     }
 
     @Override
     protected String doInBackground(String... strings) {
-        return NetworkUtils.getLoginResponse(strings[0], strings[1]);
+        email = strings[0];
+        password = strings[2];
+        return NetworkUtils.getSignUpResponse(strings[0], strings[1], strings[2]);
     }
+
 
     @Override
     protected void onPostExecute(String s) {
@@ -31,21 +37,13 @@ public class SendLoginData extends AsyncTask<String, Void, String> {
 
             String success;
             String message;
-            String token;
 
             try {
                 success = jsonObject.getString("success");
                 message = jsonObject.getString("message");
 
-                if (success.equals("true")) {
-                    // Show the token
-                    token = jsonObject.getString("token");
-
-                    // Go to the logged home
-                    Intent intent = new Intent(mContext, LoggedHomeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(TOKEN, token);
-                    mContext.startActivity(intent);
+                if (success.equals("true")) { // Go to the logged home
+                    new SendLoginData(mContext).execute(email, password);
                 } else {
                     Toast t = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
                     t.show();

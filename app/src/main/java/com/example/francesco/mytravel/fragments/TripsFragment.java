@@ -1,20 +1,17 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.example.francesco.mytravel.tasks.GetTripList;
+import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.utils.TripItem;
+import com.example.francesco.mytravel.utils.TripListAdapter;
 
 import java.util.LinkedList;
 

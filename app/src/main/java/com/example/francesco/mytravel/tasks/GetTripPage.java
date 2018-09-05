@@ -1,10 +1,13 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
+import com.example.francesco.mytravel.utils.NetworkUtils;
+import com.example.francesco.mytravel.activities.TripPageActivity;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class GetTripPage extends AsyncTask<String, Void, String> {
@@ -18,6 +21,9 @@ public class GetTripPage extends AsyncTask<String, Void, String> {
 
     private static final String TRIP_INFO =
             "com.example.francesco.mytravel.extra.TRIP_INFO";
+
+    private static final String NUM_PARTICIPANTS =
+            "com.example.francesco.mytravel.extra.NUM_PARTICIPANTS";
 
     public GetTripPage(Context mContext) {
         this.mContext = mContext;
@@ -34,10 +40,15 @@ public class GetTripPage extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         try {
+            JSONObject jsonObject = new JSONObject(s);
+            JSONArray participants = jsonObject.getJSONArray("participants");
+            String numParticipants = Integer.toString(participants.length());
+
             // Go to the trip page
             Intent intent = new Intent(mContext, TripPageActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(TOKEN, token);
+            intent.putExtra(NUM_PARTICIPANTS, numParticipants);
             intent.putExtra(TRIP_INFO, s);
             mContext.startActivity(intent);
         } catch (Exception e) {

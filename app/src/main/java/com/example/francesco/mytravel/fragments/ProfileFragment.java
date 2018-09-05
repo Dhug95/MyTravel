@@ -1,4 +1,4 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.fragments;
 
 
 import android.content.Intent;
@@ -10,7 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.francesco.mytravel.tasks.GetProfileInfo;
+import com.example.francesco.mytravel.activities.MainActivity;
+import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.activities.UpdateUserActivity;
 
 
 /**

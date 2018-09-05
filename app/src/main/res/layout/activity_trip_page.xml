@@ -4,13 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:padding="@dimen/default_padding"
-    tools:context=".TripPageActivity">
+    tools:context=".activities.TripPageActivity">
 
     <TextView
         android:id="@+id/trip_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/num_participants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trip_info"
+        android:layout_marginTop="@dimen/default_padding"
+        android:textSize="16sp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:backgroundTint="@color/colorGreen"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_add_white_24dp" />
 
 </RelativeLayout>

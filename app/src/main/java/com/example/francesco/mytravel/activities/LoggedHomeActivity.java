@@ -1,18 +1,18 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.fragments.AddTripFragment;
+import com.example.francesco.mytravel.fragments.ProfileFragment;
+import com.example.francesco.mytravel.fragments.TripsFragment;
 
 public class LoggedHomeActivity extends AppCompatActivity {
 

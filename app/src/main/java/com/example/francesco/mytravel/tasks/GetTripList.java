@@ -1,11 +1,13 @@
-package com.example.francesco.mytravel;
+package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+
+import com.example.francesco.mytravel.utils.NetworkUtils;
+import com.example.francesco.mytravel.utils.TripItem;
+import com.example.francesco.mytravel.utils.TripListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
