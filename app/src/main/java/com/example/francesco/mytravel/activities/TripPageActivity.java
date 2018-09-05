@@ -3,6 +3,7 @@ package com.example.francesco.mytravel.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.francesco.mytravel.R;
@@ -40,5 +41,12 @@ public class TripPageActivity extends AppCompatActivity {
 
         infoParticipants = (TextView) findViewById(R.id.num_participants);
         infoParticipants.setText("Participants: " + num_participants);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_trip, menu);
+        return true;
     }
 }
