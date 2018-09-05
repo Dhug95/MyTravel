@@ -1,10 +1,16 @@
 package com.example.francesco.mytravel.fragments;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +21,8 @@ import android.widget.Toast;
 
 import com.example.francesco.mytravel.R;
 import com.example.francesco.mytravel.tasks.SendTripData;
+
+import java.io.FileNotFoundException;
 
 
 /**
@@ -32,9 +40,12 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
             "com.example.francesco.mytravel.extra.END_DAY";
 
     String token;
+    String filePath;
     TextView startText;
     TextView endText;
     EditText tripName;
+
+    TextView uploadResult;
 
     public AddTripFragment() {
         // Required empty public constructor
@@ -56,6 +67,8 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
         endText = (TextView) v.findViewById(R.id.end_text);
         tripName = (EditText) v.findViewById(R.id.trip_name_create);
 
+        uploadResult = (TextView) v.findViewById(R.id.image_result);
+
 
         if (start != null) {
             startText.setText(start);
@@ -67,10 +80,12 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
         Button startDateButton = (Button) v.findViewById(R.id.start_date_button);
         Button endDateButton = (Button) v.findViewById(R.id.end_date_button);
         Button createTrip = (Button) v.findViewById(R.id.create_trip);
+        Button uploadImage = (Button) v.findViewById(R.id.upload_image);
 
         startDateButton.setOnClickListener(this);
         endDateButton.setOnClickListener(this);
         createTrip.setOnClickListener(this);
+        uploadImage.setOnClickListener(this);
 
         return v;
     }
@@ -90,9 +105,51 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
                 checkDataEntered();
                 break;
 
+            case R.id.upload_image:
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, 1);
+                break;
+
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri selectedImage = data.getData();
+
+                filePath = getRealPathFromURI(selectedImage);
+                String file_extn = filePath.substring(filePath.lastIndexOf(".") + 1);
+                uploadResult.setText(filePath);
+
+                try {
+                    if (file_extn.equals("img") || file_extn.equals("jpg") || file_extn.equals("jpeg") || file_extn.equals("gif") || file_extn.equals("png")) {
+                        //FINE
+                    } else {
+                        //NOT IN REQUIRED FORMAT
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContext().getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
     }
 
     public void showDatePickerDialog(View v) {
@@ -125,6 +182,6 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
         String queryName = tripName.getText().toString();
         String queryStart = startText.getText().toString();
         String queryEnd = endText.getText().toString();
-        new SendTripData(getContext()).execute(queryName, queryStart, queryEnd, token);
+        new SendTripData(getContext()).execute(queryName, queryStart, queryEnd, filePath, token);
     }
 }

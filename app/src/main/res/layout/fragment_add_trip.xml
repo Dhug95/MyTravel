@@ -70,11 +70,29 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/create_trip"
+        android:id="@+id/upload_image"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/internal_linear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/background_create"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_add_white_24dp"
+        android:focusable="true"
+        android:padding="@dimen/default_padding"
+        android:text="Upload image"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/create_trip"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/upload_image"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:background="@drawable/background_create"
@@ -91,10 +109,10 @@
         android:id="@+id/start_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/trip_name_create"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/start"
-        android:layout_below="@id/trip_name_create"
         android:padding="8dp"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorFields" />
@@ -110,10 +128,10 @@
         android:id="@+id/end_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/start_line"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/end"
-        android:layout_below="@id/start_line"
         android:padding="8dp"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorFields" />
@@ -123,6 +141,15 @@
         android:layout_height="1dp"
         android:layout_below="@+id/end_text"
         android:background="@color/colorSecondary" />
+
+    <TextView
+        android:id="@+id/image_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/internal_linear"
+        android:textSize="16sp"
+        android:layout_toEndOf="@+id/upload_image"
+        android:text="Result" />
 
 
 </RelativeLayout>
