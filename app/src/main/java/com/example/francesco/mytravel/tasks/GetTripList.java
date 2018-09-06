@@ -53,7 +53,8 @@ public class GetTripList extends AsyncTask<String, Void, String> {
                 String startDate = nextJSON.getString("startDate");
                 String endDate = nextJSON.getString("endDate");
                 String id = nextJSON.getString("_id");
-                TripItem next = new TripItem(name, startDate, endDate, id);
+                String img = nextJSON.getString("image");
+                TripItem next = new TripItem(name, startDate, endDate, id, img);
                 mTripList.add(next);
             }
 

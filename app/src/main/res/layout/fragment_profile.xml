@@ -5,7 +5,9 @@
     android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/home_padding"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="@dimen/default_padding"
     tools:context=".fragments.ProfileFragment">
 
     <TextView
@@ -90,7 +92,6 @@
         android:layout_above="@id/navigation"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/home_padding"
         app:backgroundTint="@color/colorSecondary"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_edit_white_24dp" />

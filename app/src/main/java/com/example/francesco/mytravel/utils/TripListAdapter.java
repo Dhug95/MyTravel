@@ -1,10 +1,15 @@
 package com.example.francesco.mytravel.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.francesco.mytravel.R;
@@ -37,6 +42,12 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         holder.tripStartView.setText(mCurrent.start);
         holder.tripEndView.setText(mCurrent.end);
         holder.tripIdView.setText(mCurrent.id);
+
+        Log.d("Image", mCurrent.img);
+        byte[] decodedString = Base64.decode(mCurrent.img, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+        holder.tripImage.setImageBitmap(decodedByte);
     }
 
     @Override
@@ -50,6 +61,8 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         public final TextView tripStartView;
         public final TextView tripEndView;
         public final TextView tripIdView;
+        public final ImageView tripImage;
+
         final TripListAdapter mAdapter;
 
         private static final String TOKEN =
@@ -67,6 +80,8 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             tripStartView = (TextView) itemView.findViewById(R.id.trip_start);
             tripEndView = (TextView) itemView.findViewById(R.id.trip_end);
             tripIdView = (TextView) itemView.findViewById(R.id.trip_id);
+            tripImage = (ImageView) itemView.findViewById(R.id.image_trip);
+
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
         }

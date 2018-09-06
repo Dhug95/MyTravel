@@ -23,6 +23,7 @@ public class NetworkUtils {
     private static final String NAME = "name";
     private static final String START = "start";
     private static final String END = "end";
+    private static final String IMAGE = "image";
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     public static String getSignUpResponse(String email, String username, String password) {
@@ -56,13 +57,15 @@ public class NetworkUtils {
         return sendRequest(builtURI, "GET");
     }
 
-    public static String getTripResponse(String name, String start, String end, String token) {
+    public static String getTripResponse(String name, String start, String end, String token, String image) {
+
         //Build up your query URI
         Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
                 .appendQueryParameter(NAME, name)
                 .appendQueryParameter(START, start)
                 .appendQueryParameter(END, end)
                 .appendQueryParameter(TOKEN, token)
+                .appendQueryParameter(IMAGE, image)
                 .build();
 
         return sendRequest(builtURI, "POST");
@@ -109,6 +112,7 @@ public class NetworkUtils {
             URL requestURL = new URL(builtURI.toString());
             urlConnection = (HttpURLConnection) requestURL.openConnection();
             urlConnection.setRequestMethod(method);
+            //urlConnection.setRequestProperty("connection", "close");
             urlConnection.connect();
 
             Map<String, List<String>> map = urlConnection.getHeaderFields();

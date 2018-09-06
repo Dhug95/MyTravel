@@ -56,9 +56,9 @@ public class LoggedHomeActivity extends AppCompatActivity {
         }
     };
 
-    private void setFragment(Fragment addTripFragment) {
+    private void setFragment(Fragment newFragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container, addTripFragment);
+        fragmentTransaction.replace(R.id.container, newFragment);
         fragmentTransaction.commit();
     }
 
