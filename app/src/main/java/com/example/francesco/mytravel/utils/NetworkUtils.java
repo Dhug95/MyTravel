@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class NetworkUtils {
 
+    //private static final String RAILS_BASE_URL = "https://my-travel-backend.herokuapp.com/app"; // Base URI for the Node JS App
     private static final String RAILS_BASE_URL = "http://192.168.1.2:8080/app"; // Base URI for the Node JS App
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
@@ -24,6 +25,7 @@ public class NetworkUtils {
     private static final String START = "start";
     private static final String END = "end";
     private static final String IMAGE = "image";
+    private static final String TRIP_ID = "trip_id";
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     public static String getSignUpResponse(String email, String username, String password) {
@@ -103,6 +105,15 @@ public class NetworkUtils {
         return sendRequest(builtURI, "GET");
     }
 
+    public static String deleteTrip(String trip_id, String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id).buildUpon()
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "DELETE");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -168,4 +179,5 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
+
 }

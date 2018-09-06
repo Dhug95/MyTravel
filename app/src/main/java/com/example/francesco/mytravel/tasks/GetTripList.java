@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.francesco.mytravel.utils.NetworkUtils;
 import com.example.francesco.mytravel.utils.TripItem;

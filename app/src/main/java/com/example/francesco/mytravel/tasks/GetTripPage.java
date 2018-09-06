@@ -19,11 +19,11 @@ public class GetTripPage extends AsyncTask<String, Void, String> {
     private static final String TOKEN =
             "com.example.francesco.mytravel.extra.TOKEN";
 
-    private static final String TRIP_INFO =
-            "com.example.francesco.mytravel.extra.TRIP_INFO";
-
     private static final String NUM_PARTICIPANTS =
             "com.example.francesco.mytravel.extra.NUM_PARTICIPANTS";
+
+    private static final String TRIP_ID =
+            "com.example.francesco.mytravel.extra.TRIP_ID";
 
     public GetTripPage(Context mContext) {
         this.mContext = mContext;
@@ -49,7 +49,7 @@ public class GetTripPage extends AsyncTask<String, Void, String> {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(TOKEN, token);
             intent.putExtra(NUM_PARTICIPANTS, numParticipants);
-            intent.putExtra(TRIP_INFO, s);
+            intent.putExtra(TRIP_ID, trip_id);
             mContext.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();

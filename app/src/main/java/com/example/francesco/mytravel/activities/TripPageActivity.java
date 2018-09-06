@@ -4,26 +4,27 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.tasks.DeleteTrip;
 
 public class TripPageActivity extends AppCompatActivity {
 
     private static final String TOKEN =
             "com.example.francesco.mytravel.extra.TOKEN";
 
-    private static final String TRIP_INFO =
-            "com.example.francesco.mytravel.extra.TRIP_INFO";
+    private static final String TRIP_ID =
+            "com.example.francesco.mytravel.extra.TRIP_ID";
 
     private static final String NUM_PARTICIPANTS =
             "com.example.francesco.mytravel.extra.NUM_PARTICIPANTS";
 
     private String token;
-    private String trip_info;
     private String num_participants;
+    private String trip_id;
 
-    private TextView infoText;
     private TextView infoParticipants;
 
     @Override
@@ -33,11 +34,8 @@ public class TripPageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         token = intent.getStringExtra(TOKEN);
-        trip_info = intent.getStringExtra(TRIP_INFO);
         num_participants = intent.getStringExtra(NUM_PARTICIPANTS);
-
-        infoText = (TextView) findViewById(R.id.trip_info);
-        infoText.setText(trip_info);
+        trip_id = intent.getStringExtra(TRIP_ID);
 
         infoParticipants = (TextView) findViewById(R.id.num_participants);
         infoParticipants.setText("Participants: " + num_participants);
@@ -48,5 +46,9 @@ public class TripPageActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_trip, menu);
         return true;
+    }
+
+    public void deleteTrip(View view) {
+        new DeleteTrip(this).execute(trip_id, token);
     }
 }
