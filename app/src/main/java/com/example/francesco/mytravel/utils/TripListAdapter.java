@@ -41,7 +41,6 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         holder.tripNameView.setText(mCurrent.name);
         holder.tripStartView.setText(mCurrent.start);
         holder.tripEndView.setText(mCurrent.end);
-        holder.tripIdView.setText(mCurrent.id);
 
         Log.d("Image", mCurrent.img);
         byte[] decodedString = Base64.decode(mCurrent.img, Base64.DEFAULT);
@@ -60,7 +59,6 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         public final TextView tripNameView;
         public final TextView tripStartView;
         public final TextView tripEndView;
-        public final TextView tripIdView;
         public final ImageView tripImage;
 
         final TripListAdapter mAdapter;
@@ -79,7 +77,6 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             tripNameView = (TextView) itemView.findViewById(R.id.trip_name);
             tripStartView = (TextView) itemView.findViewById(R.id.trip_start);
             tripEndView = (TextView) itemView.findViewById(R.id.trip_end);
-            tripIdView = (TextView) itemView.findViewById(R.id.trip_id);
             tripImage = (ImageView) itemView.findViewById(R.id.image_trip);
 
             this.mAdapter = adapter;

@@ -34,4 +34,5 @@
     <string name="new_password">New password</string>
     <string name="participants">Participants</string>
     <string name="payments">Payments</string>
+    <string name="trip_overview">Trip overview</string>
 </resources>

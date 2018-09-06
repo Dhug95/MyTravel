@@ -21,6 +21,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
         email_field = (EditText) findViewById(R.id.email_signup);
         username_field = (EditText) findViewById(R.id.username_signup);
         psw_field = (EditText) findViewById(R.id.psw_signup);

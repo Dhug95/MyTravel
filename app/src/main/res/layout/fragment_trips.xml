@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/trips_fragment"
     android:layout_width="match_parent"
-    android:padding="@dimen/default_padding"
     android:layout_height="match_parent"
+    android:padding="@dimen/default_padding"
     tools:context=".fragments.TripsFragment">
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_trips"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/home_padding" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

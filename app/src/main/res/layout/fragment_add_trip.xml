@@ -19,93 +19,14 @@
         android:textColorHint="@color/colorFields" />
 
     <View
+        android:id="@+id/trip_create_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/trip_name_create"
         android:background="@color/colorSecondary" />
 
-    <LinearLayout
-        android:id="@+id/internal_linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/end_text"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/start_date_button"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_weight="1"
-            android:background="@drawable/background_login"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/default_padding"
-            android:tag="@string/start_date"
-            android:text="@string/start_date"
-            android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/end_date_button"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_weight="1"
-            android:background="@drawable/background_login"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/default_padding"
-            android:tag="@string/end_date"
-            android:text="@string/end_date"
-            android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/upload_image"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/internal_linear"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/background_create"
-        android:clickable="true"
-        android:drawableStart="@drawable/ic_add_white_24dp"
-        android:focusable="true"
-        android:padding="@dimen/default_padding"
-        android:text="Upload image"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/create_trip"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/upload_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/background_create"
-        android:clickable="true"
-        android:drawableStart="@drawable/ic_add_white_24dp"
-        android:focusable="true"
-        android:padding="@dimen/default_padding"
-        android:text="@string/add_to_the_list"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18sp" />
-
     <TextView
+        android:layout_marginTop="@dimen/default_padding"
         android:id="@+id/start_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -124,11 +45,29 @@
         android:layout_below="@+id/start_text"
         android:background="@color/colorSecondary" />
 
+    <Button
+        android:id="@+id/start_date_button"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/start_line"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/default_padding"
+        android:background="@drawable/background_login"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/default_padding"
+        android:tag="@string/start_date"
+        android:text="@string/start_date"
+        android:textAllCaps="false"
+        android:textColor="@color/colorSecondary"
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/end_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/start_line"
+        android:layout_below="@id/start_date_button"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/end"
@@ -137,19 +76,82 @@
         android:textColorHint="@color/colorFields" />
 
     <View
+        android:id="@+id/end_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/end_text"
         android:background="@color/colorSecondary" />
 
+    <Button
+        android:id="@+id/end_date_button"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end_text"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/default_padding"
+        android:background="@drawable/background_login"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/default_padding"
+        android:tag="@string/end_date"
+        android:text="@string/end_date"
+        android:textAllCaps="false"
+        android:textColor="@color/colorSecondary"
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/upload_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/image_result"
+        android:background="@color/colorSecondary" />
+
     <TextView
         android:id="@+id/image_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end_date_button"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="Path: "
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
+    <Button
+        android:id="@+id/upload_image"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/upload_line"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/default_padding"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/background_login"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/default_padding"
+        android:text="Upload image"
+        android:textAllCaps="false"
+        android:textColor="@color/colorSecondary"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/create_trip"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/internal_linear"
-        android:textSize="16sp"
-        android:layout_toEndOf="@+id/upload_image"
-        android:text="Result" />
-
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/background_create"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_add_white_24dp"
+        android:focusable="true"
+        android:padding="@dimen/default_padding"
+        android:text="@string/add_to_the_list"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="18sp" />
 
 </RelativeLayout>

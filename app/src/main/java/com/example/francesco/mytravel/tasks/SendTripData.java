@@ -61,7 +61,7 @@ public class SendTripData extends AsyncTask<String, Void, String> {
 
 
     private String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
-        bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+        bitmap = Bitmap.createScaledBitmap(bitmap, 240, 240, true);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         byte[] byteFormat = stream.toByteArray();
