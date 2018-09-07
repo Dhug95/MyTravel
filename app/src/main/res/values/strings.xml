@@ -38,4 +38,9 @@
 
     <string name="facebook_app_id">2245494352145295</string>
     <string name="fb_login_protocol_scheme">fb2245494352145295</string>
+    <string name="email_forgot_psw">Type your email</string>
+    <string name="send_back_psw">Send back password</string>
+    <string name="help">Help</string>
+    <string name="update_info">Update info</string>
+    <string name="reset_fields">Reset fields</string>
 </resources>

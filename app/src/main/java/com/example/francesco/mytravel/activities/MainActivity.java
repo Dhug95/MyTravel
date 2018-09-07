@@ -3,17 +3,21 @@ package com.example.francesco.mytravel.activities;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.francesco.mytravel.R;
@@ -33,8 +37,15 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String FORGOT_PSW =
+            "com.example.francesco.mytravel.extra.FORGOT_PSW";
+
     private EditText email_login;
     private EditText psw_login;
+    private CheckBox remember_me;
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile = "com.example.android.hellosharedprefs";
 
     CallbackManager callbackManager;
 
@@ -64,10 +75,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
         verifyStoragePermissions(this);
 
         email_login = (EditText) findViewById(R.id.email_login);
         psw_login = (EditText) findViewById(R.id.psw_login);
+        remember_me = (CheckBox) findViewById(R.id.remember_me);
+
+        // Restore preferences
+        email_login.setText(mPreferences.getString("EMAIL", null));
+        psw_login.setText(mPreferences.getString("PSW", null));
+        remember_me.setChecked(mPreferences.getBoolean("REMEMBER", false));
+
+        Intent intent = getIntent();
+        String forgot_psw = intent.getStringExtra(FORGOT_PSW);
+        if (forgot_psw != null) {
+            Toast.makeText(this, forgot_psw, Toast.LENGTH_LONG).show();
+        }
 
         LoginButton login_button = (LoginButton) findViewById(R.id.fb_login_button);
         login_button.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends"));
@@ -94,6 +119,40 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Error: ", exception.toString());
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        if (remember_me.isChecked()) {
+            preferencesEditor.putString("EMAIL", email_login.getText().toString());
+            preferencesEditor.putString("PSW", psw_login.getText().toString());
+            preferencesEditor.putBoolean("REMEMBER", true);
+        } else {
+            preferencesEditor.putString("EMAIL", null);
+            preferencesEditor.putString("PSW", null);
+            preferencesEditor.putBoolean("REMEMBER", false);
+        }
+        preferencesEditor.apply();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        if (remember_me.isChecked()) {
+            preferencesEditor.putString("EMAIL", email_login.getText().toString());
+            preferencesEditor.putString("PSW", psw_login.getText().toString());
+            preferencesEditor.putBoolean("REMEMBER", true);
+        } else {
+            preferencesEditor.putString("EMAIL", null);
+            preferencesEditor.putString("PSW", null);
+            preferencesEditor.putBoolean("REMEMBER", false);
+        }
+        preferencesEditor.apply();
     }
 
     @Override
@@ -127,5 +186,10 @@ public class MainActivity extends AppCompatActivity {
         String queryEmail = email_login.getText().toString();
         String queryPsw = psw_login.getText().toString();
         new SendLoginData(this).execute(queryEmail, queryPsw);
+    }
+
+    public void forgotPassword(View view) {
+        Intent intent = new Intent(this, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 }

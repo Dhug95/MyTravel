@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/add_trip_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:padding="@dimen/home_padding"
     tools:context=".fragments.AddTripFragment">
 
@@ -26,11 +29,11 @@
         android:background="@color/colorSecondary" />
 
     <TextView
-        android:layout_marginTop="@dimen/default_padding"
         android:id="@+id/start_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/trip_name_create"
+        android:layout_marginTop="@dimen/default_padding"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/start"
@@ -137,21 +140,33 @@
         android:textColor="@color/colorSecondary"
         android:textSize="18sp" />
 
+
     <Button
-        android:id="@+id/create_trip"
+        android:id="@+id/button_reset"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/background_create"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/background_login"
         android:clickable="true"
-        android:drawableStart="@drawable/ic_add_white_24dp"
         android:focusable="true"
         android:padding="@dimen/default_padding"
-        android:text="@string/add_to_the_list"
+        android:text="@string/reset_fields"
         android:textAllCaps="false"
-        android:textColor="#fff"
+        android:textColor="@color/colorRed"
         android:textSize="18sp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/create_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/colorGreen"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_add_white_24dp" />
 
 </RelativeLayout>

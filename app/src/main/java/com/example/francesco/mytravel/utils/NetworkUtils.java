@@ -124,6 +124,15 @@ public class NetworkUtils {
         return sendRequest(builtURI, "POST");
     }
 
+    public static String requestPassword(String queryEmail) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/forgot_password").buildUpon()
+                .appendQueryParameter(EMAIL, queryEmail)
+                .build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;

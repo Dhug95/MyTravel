@@ -2,11 +2,14 @@ package com.example.francesco.mytravel.fragments;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -15,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +51,9 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
 
     TextView uploadResult;
 
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile = "com.example.android.hellosharedprefs";
+
     public AddTripFragment() {
         // Required empty public constructor
     }
@@ -69,7 +76,6 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
 
         uploadResult = (TextView) v.findViewById(R.id.image_result);
 
-
         if (start != null) {
             startText.setText(start);
         }
@@ -77,15 +83,25 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
             endText.setText(end);
         }
 
+        mPreferences = getActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
+
+        if (!startText.getText().toString().equals("") || !endText.getText().toString().equals("")) {
+            // Restore preferences
+            tripName.setText(mPreferences.getString("NAME", null));
+            uploadResult.setText(mPreferences.getString("IMAGE", null));
+        }
+
         Button startDateButton = (Button) v.findViewById(R.id.start_date_button);
         Button endDateButton = (Button) v.findViewById(R.id.end_date_button);
-        Button createTrip = (Button) v.findViewById(R.id.create_trip);
+        FloatingActionButton createTrip = (FloatingActionButton) v.findViewById(R.id.create_trip);
         Button uploadImage = (Button) v.findViewById(R.id.upload_image);
+        Button resetButton = (Button) v.findViewById(R.id.button_reset);
 
         startDateButton.setOnClickListener(this);
         endDateButton.setOnClickListener(this);
-        createTrip.setOnClickListener(this);
         uploadImage.setOnClickListener(this);
+        createTrip.setOnClickListener(this);
+        resetButton.setOnClickListener(this);
 
         return v;
     }
@@ -111,9 +127,38 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(photoPickerIntent, 1);
                 break;
 
+            case R.id.button_reset:
+                tripName.setText("");
+                startText.setText("");
+                endText.setText("");
+                uploadResult.setText("");
+                break;
+
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        preferencesEditor.putString("NAME", tripName.getText().toString());
+        preferencesEditor.putString("IMAGE", uploadResult.getText().toString());
+
+        preferencesEditor.apply();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        preferencesEditor.putString("NAME", tripName.getText().toString());
+        preferencesEditor.putString("IMAGE", uploadResult.getText().toString());
+
+        preferencesEditor.apply();
     }
 
     @Override
