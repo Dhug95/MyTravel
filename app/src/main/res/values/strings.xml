@@ -35,4 +35,7 @@
     <string name="participants">Participants</string>
     <string name="payments">Payments</string>
     <string name="trip_overview">Trip overview</string>
+
+    <string name="facebook_app_id">2245494352145295</string>
+    <string name="fb_login_protocol_scheme">fb2245494352145295</string>
 </resources>

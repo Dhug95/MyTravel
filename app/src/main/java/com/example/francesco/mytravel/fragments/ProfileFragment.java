@@ -50,7 +50,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         logout.setOnClickListener(this);
         fab.setOnClickListener(this);
 
-        new GetProfileInfo(getContext(), mUsernameInfo, mEmailInfo).execute(token);
+        new GetProfileInfo(getContext(), mUsernameInfo, mEmailInfo, fab).execute(token);
 
         return v;
     }

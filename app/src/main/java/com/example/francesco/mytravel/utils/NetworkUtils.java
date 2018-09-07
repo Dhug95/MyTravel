@@ -21,6 +21,7 @@ public class NetworkUtils {
     private static final String PASSWORD = "password";
     private static final String OLD_PASSWORD = "old_password";
     private static final String TOKEN = "token";
+    private static final String FACEBOOK_TOKEN = "facebook_token";
     private static final String NAME = "name";
     private static final String START = "start";
     private static final String END = "end";
@@ -114,6 +115,15 @@ public class NetworkUtils {
         return sendRequest(builtURI, "DELETE");
     }
 
+    public static String facebookLogin(String facebookToken) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/facebook_login").buildUpon()
+                .appendQueryParameter(FACEBOOK_TOKEN, facebookToken)
+                .build();
+
+        return sendRequest(builtURI, "POST");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -179,5 +189,4 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
-
 }
