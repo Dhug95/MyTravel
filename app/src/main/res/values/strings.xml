@@ -43,4 +43,6 @@
     <string name="help">Help</string>
     <string name="update_info">Update info</string>
     <string name="reset_fields">Reset fields</string>
+    <string name="destination_name">Type destination name</string>
+    <string name="add_destination">Add destination</string>
 </resources>

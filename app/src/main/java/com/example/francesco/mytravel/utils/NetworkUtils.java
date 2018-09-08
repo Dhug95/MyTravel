@@ -15,7 +15,7 @@ import java.util.Map;
 public class NetworkUtils {
 
     //private static final String RAILS_BASE_URL = "https://my-travel-backend.herokuapp.com/app"; // Base URI for the Node JS App
-    private static final String RAILS_BASE_URL = "http://192.168.1.2:8080/app"; // Base URI for the Node JS App
+    private static final String RAILS_BASE_URL = "http://192.168.1.3:8080/app"; // Base URI for the Node JS App
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -27,6 +27,8 @@ public class NetworkUtils {
     private static final String END = "end";
     private static final String IMAGE = "image";
     private static final String TRIP_ID = "trip_id";
+    private static final String LAT = "lat";
+    private static final String LNG = "lng";
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     public static String getSignUpResponse(String email, String username, String password) {
@@ -128,6 +130,15 @@ public class NetworkUtils {
         //Build up your query URI
         Uri builtURI = Uri.parse(RAILS_BASE_URL + "/forgot_password").buildUpon()
                 .appendQueryParameter(EMAIL, queryEmail)
+                .build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
+    public static String getWeatherInfo(String lat, String lng) {
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/dest_weather").buildUpon()
+                .appendQueryParameter(LAT, lat)
+                .appendQueryParameter(LNG, lng)
                 .build();
 
         return sendRequest(builtURI, "GET");
