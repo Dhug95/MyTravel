@@ -1,8 +1,10 @@
 package com.example.francesco.mytravel.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -11,14 +13,17 @@ import android.widget.Toast;
 
 
 import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.tasks.AddDestination;
 import com.example.francesco.mytravel.tasks.DeleteTrip;
-import com.example.francesco.mytravel.tasks.GetDestinationInfo;
+import com.example.francesco.mytravel.utils.DestItem;
+import com.example.francesco.mytravel.utils.DestListAdapter;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.maps.model.LatLng;
+
+import java.util.LinkedList;
 
 public class TripPageActivity extends AppCompatActivity {
 
@@ -36,14 +41,9 @@ public class TripPageActivity extends AppCompatActivity {
     private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
 
     private String token;
-    private String num_participants;
     private String trip_id;
 
-    private TextView infoParticipants;
-
-    private TextView cityName;
-    private TextView weatherInfo;
-    private TextView countryName;
+    private final LinkedList<DestItem> mDestinationList = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +52,23 @@ public class TripPageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         token = intent.getStringExtra(TOKEN);
-        num_participants = intent.getStringExtra(NUM_PARTICIPANTS);
+        String num_participants = intent.getStringExtra(NUM_PARTICIPANTS);
         trip_id = intent.getStringExtra(TRIP_ID);
 
-        infoParticipants = (TextView) findViewById(R.id.num_participants);
+        // Get a handle to the RecyclerView.
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_destinations);
+        // Create an adapter and supply the data to be displayed.
+        DestListAdapter mAdapter = new DestListAdapter(this, mDestinationList);
+        // Connect the adapter with the RecyclerView.
+
+        new GetDestList(this, mDestinationList, mRecyclerView, mAdapter).execute(token, trip_id);
+
+        TextView infoParticipants = (TextView) findViewById(R.id.num_participants);
         infoParticipants.setText("Participants: " + num_participants);
 
-        cityName = findViewById(R.id.city_name);
-        weatherInfo = findViewById(R.id.weather_info);
-        countryName = findViewById(R.id.country_name);
+        TextView infoBalance = (TextView) findViewById(R.id.balance);
+        infoBalance.setText("0");
+
     }
 
     @Override
@@ -86,11 +94,6 @@ public class TripPageActivity extends AppCompatActivity {
             Log.d("NotAvailableException: ", e.getMessage());
         }
 
-        /* Go to the add destination page
-        Intent intent = new Intent(this, AddDestinationActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(TOKEN, token);
-        startActivity(intent); */
     }
 
     @Override
@@ -102,13 +105,11 @@ public class TripPageActivity extends AppCompatActivity {
                 String city = place.getName().toString();
                 Log.d(PLACES, "Place: " + city);
 
-                String placeID = place.getId();
+                String country = "Random";
 
-                LatLng latLng = place.getLatLng();
-                String lat = Double.toString(latLng.latitude);
-                String lng = Double.toString(latLng.longitude);
-
-                new GetDestinationInfo(weatherInfo).execute(lat, lng);
+                Log.d("Bestemmia","Dio porco");
+                new AddDestination(this, token).execute(city, country, trip_id);
+                this.recreate();
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);

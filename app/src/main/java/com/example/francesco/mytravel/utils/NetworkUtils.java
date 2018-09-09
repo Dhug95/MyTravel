@@ -23,6 +23,7 @@ public class NetworkUtils {
     private static final String TOKEN = "token";
     private static final String FACEBOOK_TOKEN = "facebook_token";
     private static final String NAME = "name";
+    private static final String COUNTRY = "country";
     private static final String START = "start";
     private static final String END = "end";
     private static final String IMAGE = "image";
@@ -76,10 +77,32 @@ public class NetworkUtils {
         return sendRequest(builtURI, "POST");
     }
 
+    public static String sendDestData(String name, String country, String trip_id, String token) {
+
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/destinations").buildUpon()
+                .appendQueryParameter(NAME, name)
+                .appendQueryParameter(COUNTRY, country)
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "POST");
+    }
+
     public static String getTripList(String token) {
         //Build up your query URI
         Uri builtURI = Uri.parse(RAILS_BASE_URL + "/mytrips").buildUpon()
                 .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
+    public static String getDestList(String token, String trip_id) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/destinations").buildUpon()
+                .appendQueryParameter(TOKEN, token)
+                .appendQueryParameter(TRIP_ID, trip_id)
                 .build();
 
         return sendRequest(builtURI, "GET");
@@ -135,6 +158,7 @@ public class NetworkUtils {
         return sendRequest(builtURI, "GET");
     }
 
+    /*
     public static String getWeatherInfo(String lat, String lng) {
         Uri builtURI = Uri.parse(RAILS_BASE_URL + "/dest_weather").buildUpon()
                 .appendQueryParameter(LAT, lat)
@@ -143,6 +167,7 @@ public class NetworkUtils {
 
         return sendRequest(builtURI, "GET");
     }
+    */
 
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
@@ -209,4 +234,5 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
+
 }

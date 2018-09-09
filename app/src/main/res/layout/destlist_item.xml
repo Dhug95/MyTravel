@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding">
+
+    <TextView
+        android:id="@+id/dest_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Destination name"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/dest_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Destination country"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/image_trip"
+        android:layout_marginTop="6dp"
+        android:background="@color/colorSecondary" />
+
+</LinearLayout>
