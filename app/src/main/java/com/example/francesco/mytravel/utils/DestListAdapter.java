@@ -85,7 +85,7 @@ public class DestListAdapter extends RecyclerView.Adapter<DestListAdapter.DestVi
             String token = TripsFragment.getToken();
 
             // Go to the dest page
-            new GetDestPage(mContext).execute(element.trip_id, element.id, token);
+            new GetDestPage(mContext).execute(element.trip_id, element.id, token, element.latitude, element.longitude);
 
         }
     }

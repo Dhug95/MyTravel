@@ -24,7 +24,9 @@ public class AddDestination extends AsyncTask<String, Void, String> {
         String name = strings[0];
         String country = strings[1];
         String trip_id = strings[2];
-        return NetworkUtils.sendDestData(name, country, trip_id, token);
+        String latitude = strings[3];
+        String longitude = strings[4];
+        return NetworkUtils.sendDestData(name, country, trip_id, token, latitude, longitude);
     }
 
     @Override

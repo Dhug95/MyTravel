@@ -20,9 +20,18 @@ public class GetDestPage extends AsyncTask<String, Void, String> {
     private static final String DEST_ID =
             "com.example.francesco.mytravel.extra.DEST_ID";
 
+    private static final String LATITUDE =
+            "com.example.francesco.mytravel.extra.LATITUDE";
+
+    private static final String LONGITUDE =
+            "com.example.francesco.mytravel.extra.LONGITUDE";
+
+
     private String trip_id;
     private String dest_id;
     private String token;
+    private String latitude;
+    private String longitude;
     private Context mContext;
 
     public GetDestPage(Context mContext) {
@@ -34,6 +43,8 @@ public class GetDestPage extends AsyncTask<String, Void, String> {
         trip_id = strings[0];
         dest_id = strings[1];
         token = strings[2];
+        latitude = strings[3];
+        longitude = strings[4];
         return NetworkUtils.getDestPage(trip_id, dest_id, token);
     }
 
@@ -47,6 +58,8 @@ public class GetDestPage extends AsyncTask<String, Void, String> {
         intent.putExtra(TOKEN, token);
         intent.putExtra(TRIP_ID, trip_id);
         intent.putExtra(DEST_ID, dest_id);
+        intent.putExtra(LATITUDE, latitude);
+        intent.putExtra(LONGITUDE, longitude);
         mContext.startActivity(intent);
     }
 }

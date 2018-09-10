@@ -1,6 +1,8 @@
 package com.example.francesco.mytravel.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -42,8 +44,12 @@ public class TripPageActivity extends AppCompatActivity {
 
     private String token;
     private String trip_id;
+    private String num_participants;
 
     private final LinkedList<DestItem> mDestinationList = new LinkedList<>();
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile = "com.example.android.hellosharedprefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +58,17 @@ public class TripPageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         token = intent.getStringExtra(TOKEN);
-        String num_participants = intent.getStringExtra(NUM_PARTICIPANTS);
+        num_participants = intent.getStringExtra(NUM_PARTICIPANTS);
         trip_id = intent.getStringExtra(TRIP_ID);
+
+        mPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
+
+        if (token == null) {
+            // Restore preferences
+            token = mPreferences.getString(TOKEN, null);
+            trip_id = mPreferences.getString(TRIP_ID, null);
+            num_participants = mPreferences.getString(NUM_PARTICIPANTS, null);
+        }
 
         // Get a handle to the RecyclerView.
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_destinations);
@@ -107,7 +122,10 @@ public class TripPageActivity extends AppCompatActivity {
 
                 String country = "Random";
 
-                new AddDestination(this, token).execute(city, country, trip_id);
+                String latitude = Double.toString(place.getLatLng().latitude);
+                String longitude = Double.toString(place.getLatLng().longitude);
+
+                new AddDestination(this, token).execute(city, country, trip_id, latitude, longitude);
                 this.recreate();
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
@@ -120,4 +138,33 @@ public class TripPageActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        if (token != null) {
+            preferencesEditor.putString(TOKEN, token);
+            preferencesEditor.putString(TRIP_ID, trip_id);
+            preferencesEditor.putString(NUM_PARTICIPANTS, num_participants);
+        }
+
+        preferencesEditor.apply();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        if (token != null) {
+            preferencesEditor.putString(TOKEN, token);
+            preferencesEditor.putString(TRIP_ID, trip_id);
+            preferencesEditor.putString(NUM_PARTICIPANTS, num_participants);
+        }
+
+        preferencesEditor.apply();
+    }
+
 }

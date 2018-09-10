@@ -28,8 +28,8 @@ public class NetworkUtils {
     private static final String END = "end";
     private static final String IMAGE = "image";
     private static final String TRIP_ID = "trip_id";
-    private static final String LAT = "lat";
-    private static final String LNG = "lng";
+    private static final String LATITUDE = "latitude";
+    private static final String LONGITUDE = "longitude";
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     public static String getSignUpResponse(String email, String username, String password) {
@@ -77,13 +77,16 @@ public class NetworkUtils {
         return sendRequest(builtURI, "POST");
     }
 
-    public static String sendDestData(String name, String country, String trip_id, String token) {
+    public static String sendDestData(String name, String country, String trip_id, String token,
+                                      String latitude, String longitude) {
 
         Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/destinations").buildUpon()
                 .appendQueryParameter(NAME, name)
                 .appendQueryParameter(COUNTRY, country)
                 .appendQueryParameter(TRIP_ID, trip_id)
                 .appendQueryParameter(TOKEN, token)
+                .appendQueryParameter(LATITUDE, latitude)
+                .appendQueryParameter(LONGITUDE, longitude)
                 .build();
 
         return sendRequest(builtURI, "POST");
@@ -178,6 +181,31 @@ public class NetworkUtils {
     }
     */
 
+
+    public static String getWeatherInfo(String latitude, String longitude, String APIKEY) {
+        String weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat=" +
+                latitude + "&lon=" + longitude + "&APPID=" + APIKEY + "&units=metric";
+        Uri builtURI = Uri.parse(weatherURL).buildUpon().build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
+    public static String getCountryCurrency(String countryCode) {
+        String countryURL = "https://restcountries.eu/rest/v2/alpha/" + countryCode;
+        Uri builtURI = Uri.parse(countryURL).buildUpon().build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
+    // http://free.currencyconverterapi.com/api/v5/convert?q=EUR_SYP&compact=y
+    public static String getCurrencyConversion(String inputValue, String outputCode) {
+        String conversionURL = "http://free.currencyconverterapi.com/api/v5/convert?q=EUR_" + outputCode + "&compact=y";
+        Uri builtURI = Uri.parse(conversionURL).buildUpon().build();
+
+        return sendRequest(builtURI, "GET");
+
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -243,5 +271,4 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
-
 }

@@ -58,11 +58,13 @@ public class GetDestList extends AsyncTask<String, Void, String> {
                 String country = nextJSON.getString("country");
                 String id = nextJSON.getString("_id");
                 String trip = nextJSON.getString("trip");
+                String latitude = nextJSON.getString("latitude");
+                String longitude = nextJSON.getString("longitude");
 
                 Log.d("TRIP_ID: ", trip);
                 Log.d("DEST_ID: ", id);
 
-                DestItem next = new DestItem(name, country, id, trip);
+                DestItem next = new DestItem(name, country, id, trip, latitude, longitude);
                 mDestinationList.add(next);
             }
 
