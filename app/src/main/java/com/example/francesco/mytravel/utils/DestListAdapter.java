@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.francesco.mytravel.R;
 import com.example.francesco.mytravel.fragments.TripsFragment;
+import com.example.francesco.mytravel.tasks.GetDestPage;
 import com.example.francesco.mytravel.tasks.GetTripPage;
 
 import java.util.LinkedList;
@@ -75,7 +76,7 @@ public class DestListAdapter extends RecyclerView.Adapter<DestListAdapter.DestVi
 
         @Override
         public void onClick(View view) {
-            /*
+
             // Get the position of the item that was clicked.
             int mPosition = getLayoutPosition();
             // Use that to access the affected item in mWordList.
@@ -83,9 +84,9 @@ public class DestListAdapter extends RecyclerView.Adapter<DestListAdapter.DestVi
 
             String token = TripsFragment.getToken();
 
-            // Go to the trip page
-            new GetDestPage(mContext).execute(element.id, token);
-            */
+            // Go to the dest page
+            new GetDestPage(mContext).execute(element.trip_id, element.id, token);
+
         }
     }
 }

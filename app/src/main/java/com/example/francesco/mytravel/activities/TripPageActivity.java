@@ -1,6 +1,5 @@
 package com.example.francesco.mytravel.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import com.example.francesco.mytravel.R;
 import com.example.francesco.mytravel.tasks.AddDestination;
 import com.example.francesco.mytravel.tasks.DeleteTrip;
+import com.example.francesco.mytravel.tasks.GetDestList;
 import com.example.francesco.mytravel.utils.DestItem;
 import com.example.francesco.mytravel.utils.DestListAdapter;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -107,7 +107,6 @@ public class TripPageActivity extends AppCompatActivity {
 
                 String country = "Random";
 
-                Log.d("Bestemmia","Dio porco");
                 new AddDestination(this, token).execute(city, country, trip_id);
                 this.recreate();
 

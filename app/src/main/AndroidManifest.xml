@@ -14,7 +14,6 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAd_zGZoCE48LzkEdt8RaJtZ18RR5GapFw" />
@@ -75,6 +74,9 @@
             android:name=".activities.ForgotPasswordActivity"
             android:label="@string/help"
             android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.DestPageActivity"
+            android:parentActivityName=".activities.TripPageActivity" />
     </application>
 
 </manifest>

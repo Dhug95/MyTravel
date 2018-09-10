@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_padding"
+    tools:context=".activities.DestPageActivity">
+
+    <ImageView
+        android:id="@+id/weather_image"
+        android:layout_width="198dp"
+        android:layout_height="216dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="104dp"
+        android:background="@drawable/sun" />
+
+    <TextView
+        android:id="@+id/weather_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weather_image"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="Weather"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/weather_status"
+        android:layout_below="@id/weather_title"
+        android:textSize="18dp"
+        android:text="Status: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/weather_temp"
+        android:layout_below="@id/weather_status"
+        android:textSize="18dp"
+        android:text="Temperature: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/weather_wind"
+        android:layout_below="@id/weather_temp"
+        android:textSize="18dp"
+        android:text="Wind: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/city_name"
+        android:text="Ciy name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:id="@+id/currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="191dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Convert Currency :"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/valueConvert"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="125dp"
+        android:layout_marginStart="15dp"
+        android:ems="10"
+        android:hint="insert value"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:text=""
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="66dp"
+        android:ems="10"
+        android:hint="the local value"
+        android:inputType="number"
+        android:text=""
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields"
+        android:textSize="18dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="39dp"
+        android:clickable="true" />
+
+</RelativeLayout>

@@ -4,11 +4,13 @@ public class DestItem {
 
     public String name;
     public String country;
+    public String id;
     public String trip_id;
 
-    public DestItem(String n, String c, String i) {
+    public DestItem(String n, String c, String i, String t) {
         name = n;
         country = c;
-        trip_id = i;
+        id = i;
+        trip_id = t;
     }
 }
