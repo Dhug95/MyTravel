@@ -30,6 +30,7 @@ public class NetworkUtils {
     private static final String TRIP_ID = "trip_id";
     private static final String LATITUDE = "latitude";
     private static final String LONGITUDE = "longitude";
+    private static final String AMOUNT = "amount";
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     public static String getSignUpResponse(String email, String username, String password) {
@@ -228,6 +229,25 @@ public class NetworkUtils {
         return sendRequest(builtURI, "GET");
     }
 
+    public static String sendPayment(String trip_id, String token, String amount) {
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/add_payment").buildUpon()
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(TOKEN, token)
+                .appendQueryParameter(AMOUNT, amount)
+                .build();
+
+        return  sendRequest(builtURI, "POST");
+    }
+
+    public static String getPaymentList(String token, String trip_id) {
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/get_payments").buildUpon()
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return  sendRequest(builtURI, "GET");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -293,4 +313,5 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
+
 }

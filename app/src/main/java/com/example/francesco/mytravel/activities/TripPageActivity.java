@@ -183,6 +183,16 @@ public class TripPageActivity extends AppCompatActivity {
                 startActivity(intent);
                 //finish();
                 break;
+
+            case R.id.action_payments:
+                // Go to the participants page
+                Intent newIntent = new Intent(this, PaymentPageActivity.class);
+                newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                newIntent.putExtra(TOKEN, token);
+                newIntent.putExtra(TRIP_ID, trip_id);
+                startActivity(newIntent);
+                break;
+
             default:
                 break;
         }

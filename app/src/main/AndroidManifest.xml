@@ -83,6 +83,8 @@
         <activity
             android:name=".activities.AddParticipantActivity"
             android:parentActivityName=".activities.ParticipantsPageActivity" />
+        <activity android:name=".activities.PaymentPageActivity" />
+        <activity android:name=".activities.AddPaymentActivity" />
     </application>
 
 </manifest>
