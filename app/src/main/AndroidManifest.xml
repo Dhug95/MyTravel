@@ -77,6 +77,12 @@
         <activity
             android:name=".activities.DestPageActivity"
             android:parentActivityName=".activities.TripPageActivity" />
+        <activity
+            android:name=".activities.ParticipantsPageActivity"
+            android:parentActivityName=".activities.TripPageActivity" />
+        <activity
+            android:name=".activities.AddParticipantActivity"
+            android:parentActivityName=".activities.ParticipantsPageActivity" />
     </application>
 
 </manifest>

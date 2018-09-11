@@ -198,12 +198,24 @@ public class NetworkUtils {
     }
 
     // http://free.currencyconverterapi.com/api/v5/convert?q=EUR_SYP&compact=y
-    public static String getCurrencyConversion(String inputValue, String outputCode) {
-        String conversionURL = "http://free.currencyconverterapi.com/api/v5/convert?q=EUR_" + outputCode + "&compact=y";
+    public static String getCurrencyConversion(String inputCode, String outputCode) {
+        String conversionURL = "http://free.currencyconverterapi.com/api/v5/convert?q=" +
+                inputCode + "_" + outputCode + "&compact=y";
         Uri builtURI = Uri.parse(conversionURL).buildUpon().build();
 
         return sendRequest(builtURI, "GET");
 
+    }
+
+    public static String sendNewParticipant(String trip_id, String partUsername, String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/add_participant").buildUpon()
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(USERNAME, partUsername)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "POST");
     }
 
     private static String sendRequest(Uri builtURI, String method) {

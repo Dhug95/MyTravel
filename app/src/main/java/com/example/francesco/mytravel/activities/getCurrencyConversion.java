@@ -12,9 +12,11 @@ class getCurrencyConversion extends AsyncTask<String, Void, String> {
     private TextView outputCurrencyView;
     private String outputCode;
     private String inputValue;
+    private String inputCode;
 
 
-    public getCurrencyConversion(TextView outputCurrencyView) {
+    public getCurrencyConversion(String inputCode, TextView outputCurrencyView) {
+        this.inputCode = inputCode;
         this.outputCurrencyView = outputCurrencyView;
     }
 
@@ -23,14 +25,14 @@ class getCurrencyConversion extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... strings) {
         inputValue = strings[0];
         outputCode = strings[1];
-        return NetworkUtils.getCurrencyConversion(inputValue, outputCode);
+        return NetworkUtils.getCurrencyConversion(inputCode, outputCode);
     }
 
     @Override
     protected void onPostExecute(String s) {
         try {
             JSONObject result = new JSONObject(s);
-            String label = "EUR_" + outputCode;
+            String label = inputCode + "_" + outputCode;
 
             JSONObject valueObj = result.getJSONObject(label);
 

@@ -2,8 +2,11 @@ package com.example.francesco.mytravel.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.francesco.mytravel.R;
 import com.example.francesco.mytravel.utils.NetworkUtils;
 
 import org.json.JSONArray;
@@ -20,9 +23,12 @@ public class GetWeatherInfo extends AsyncTask<String, Void, String> {
     private TextView temperature;
     private TextView wind;
 
+    private ImageView weatherImage;
+
     private  TextView mCurrency;
 
-    public GetWeatherInfo(TextView CC, TextView WI, TextView T, TextView W, TextView mC) {
+    public GetWeatherInfo(ImageView IV, TextView CC, TextView WI, TextView T, TextView W, TextView mC) {
+        weatherImage = IV;
         cityCountry = CC;
         weatherInfo = WI;
         temperature = T;
@@ -67,6 +73,14 @@ public class GetWeatherInfo extends AsyncTask<String, Void, String> {
             weatherInfo.setText("Status: " + main_condition + ", " + condition_desc);
             temperature.setText("Temperature: " + temp);
             wind.setText("Wind speed: " + windSpeed);
+
+            if (main_condition.equals("Clear")) {
+                weatherImage.setBackgroundResource(R.drawable.sun);
+            } else {
+                weatherImage.setBackgroundResource(R.drawable.clouds);
+            }
+
+            weatherImage.setVisibility(View.VISIBLE);
 
             Log.d("Weather info: ", "Finished");
             new GetCountryCurrency(mCurrency).execute(country);

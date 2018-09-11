@@ -5,12 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.francesco.mytravel.R;
 import com.example.francesco.mytravel.tasks.GetCountryCurrency;
 import com.example.francesco.mytravel.tasks.GetWeatherInfo;
+import com.mynameismidori.currencypicker.CurrencyPicker;
+import com.mynameismidori.currencypicker.CurrencyPickerListener;
 
 public class DestPageActivity extends AppCompatActivity {
 
@@ -41,9 +44,14 @@ public class DestPageActivity extends AppCompatActivity {
     private TextView temperature;
     private TextView wind;
 
+    private ImageView weatherImage;
+
     private TextView mCurrency;
+    private TextView inputCurrencyCode;
     private EditText inputCurrency;
     private TextView outputCurrency;
+
+    private CurrencyPicker picker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,22 +70,41 @@ public class DestPageActivity extends AppCompatActivity {
         temperature = findViewById(R.id.weather_temp);
         wind = findViewById(R.id.weather_wind);
 
+        weatherImage = findViewById(R.id.weather_image);
+
         mCurrency = findViewById(R.id.currency_code);
         inputCurrency = findViewById(R.id.currency_input);
         outputCurrency = findViewById(R.id.currency_output);
+        inputCurrencyCode = findViewById(R.id.currency_input_code);
 
         String APIKEY = "a20716cacf4034bea5188e75d6a0b44b";
 
-        new GetWeatherInfo(cityCountry, weatherInfo, temperature, wind, mCurrency).execute(latitude, longitude, APIKEY);
+        new GetWeatherInfo(weatherImage, cityCountry, weatherInfo, temperature, wind, mCurrency).execute(latitude, longitude, APIKEY);
+
+        picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+        picker.setListener(new CurrencyPickerListener() {
+            @Override
+            public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
+                inputCurrencyCode.setText(code);
+                picker.dismiss();
+            }
+        });
 
     }
 
     public void convertCurrency(View view) {
-        if (inputCurrency.getText() == null) {
+        if (inputCurrency.getText().toString().equals("")) {
             Toast.makeText(this, "Insert a value", Toast.LENGTH_LONG).show();
+        } else if (inputCurrencyCode.getText().toString().equals("")) {
+            Toast.makeText(this, "Choose a currency to convert", Toast.LENGTH_LONG).show();
         } else {
             String input = inputCurrency.getText().toString();
-            new getCurrencyConversion(outputCurrency).execute(input, mCurrency.getText().toString());
+            String inputCode = inputCurrencyCode.getText().toString();
+            new getCurrencyConversion(inputCode, outputCurrency).execute(input, mCurrency.getText().toString());
         }
+    }
+
+    public void showCurrency(View view) {
+        picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
     }
 }

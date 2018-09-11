@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +67,11 @@ public class TripPageActivity extends AppCompatActivity {
         if (token == null) {
             // Restore preferences
             token = mPreferences.getString(TOKEN, null);
+        }
+        if (trip_id == null) {
             trip_id = mPreferences.getString(TRIP_ID, null);
+        }
+        if (num_participants == null) {
             num_participants = mPreferences.getString(NUM_PARTICIPANTS, null);
         }
 
@@ -167,4 +172,19 @@ public class TripPageActivity extends AppCompatActivity {
         preferencesEditor.apply();
     }
 
+    public void goToPage(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_participants:
+                // Go to the participants page
+                Intent intent = new Intent(this, ParticipantsPageActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(TOKEN, token);
+                intent.putExtra(TRIP_ID, trip_id);
+                startActivity(intent);
+                //finish();
+                break;
+            default:
+                break;
+        }
+    }
 }

@@ -5,15 +5,17 @@
 
     <item
         android:id="@+id/action_participants"
-        android:orderInCategory="10"
         android:icon="@drawable/ic_people_white_24dp"
+        android:onClick="goToPage"
+        android:orderInCategory="10"
         android:title="@string/participants"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_payments"
-        android:orderInCategory="20"
         android:icon="@drawable/ic_attach_money_white_24dp"
+        android:onClick="goToPage"
+        android:orderInCategory="20"
         android:title="@string/payments"
         app:showAsAction="ifRoom" />
 

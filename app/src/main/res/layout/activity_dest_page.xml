@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:padding="@dimen/default_padding"
     tools:context=".activities.DestPageActivity">
 
@@ -12,8 +14,9 @@
         android:layout_width="198dp"
         android:layout_height="216dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="104dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:visibility="invisible"
         android:background="@drawable/sun" />
 
     <TextView
@@ -34,24 +37,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/weather_title"
-        android:text="Status: "
         android:textSize="18dp" />
+
+    <View
+        android:id="@+id/weather_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/weather_status"
+        android:background="@color/colorSecondary" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/weather_line"
+        android:paddingTop="8dp"
+        android:text="@string/status"
+        android:textColor="@color/colorProfile"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/weather_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/weather_status"
-        android:text="Temperature: "
+        android:layout_below="@id/status"
         android:textSize="18dp" />
+
+    <View
+        android:id="@+id/temp_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/weather_temp"
+        android:background="@color/colorSecondary" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/temp_line"
+        android:paddingTop="8dp"
+        android:text="@string/temperature"
+        android:textColor="@color/colorProfile"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/weather_wind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/weather_temp"
-        android:text="Wind: "
+        android:layout_below="@id/temperature"
         android:textSize="18dp" />
+
+    <View
+        android:id="@+id/wind_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/weather_wind"
+        android:background="@color/colorSecondary" />
+
+    <TextView
+        android:id="@+id/wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/wind_line"
+        android:paddingTop="8dp"
+        android:text="@string/wind"
+        android:textColor="@color/colorProfile"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/city_country"
@@ -94,6 +148,35 @@
         android:textSize="18dp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/convert_button"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currency_output"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/background_login"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="convertCurrency"
+        android:padding="@dimen/default_padding"
+        android:text="Convert your m0m"
+        android:textAllCaps="false"
+        android:textColor="@color/colorRed"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/currency_input_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/currency_code"
+        android:hint="EUR"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/currency_code"
         android:layout_width="match_parent"
@@ -106,18 +189,18 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/convert_button"
+        android:id="@+id/select_currency"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/currency_output"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/background_login"
         android:clickable="true"
-        android:onClick="convertCurrency"
         android:focusable="true"
+        android:onClick="showCurrency"
         android:padding="@dimen/default_padding"
-        android:text="Convert your m0m"
+        android:text="Select your currency"
         android:textAllCaps="false"
         android:textColor="@color/colorRed"
         android:textSize="18sp" />
