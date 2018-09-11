@@ -218,6 +218,16 @@ public class NetworkUtils {
         return sendRequest(builtURI, "POST");
     }
 
+    public static String getPartList(String trip_id, String token) {
+        //Build up your query URI
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/get_participants").buildUpon()
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;

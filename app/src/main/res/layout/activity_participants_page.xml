@@ -9,6 +9,12 @@
     android:padding="@dimen/home_padding"
     tools:context=".activities.ParticipantsPageActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_participants"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/add_participant" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_participant"
         android:layout_width="wrap_content"
