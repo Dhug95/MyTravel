@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.francesco.mytravel.activities.DestPageActivity">
+
+    <item
+        android:id="@+id/remove_dest"
+        android:onClick="removeDest"
+        android:orderInCategory="10"
+        android:title="@string/remove"
+        app:showAsAction="never" />
+
+</menu>

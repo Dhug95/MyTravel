@@ -1,6 +1,8 @@
 package com.example.francesco.mytravel.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +34,9 @@ public class ParticipantsPageActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private PartListAdapter mAdapter;
 
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile = "com.example.android.hellosharedprefs";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,17 @@ public class ParticipantsPageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         token = intent.getStringExtra(TOKEN);
         trip_id = intent.getStringExtra(TRIP_ID);
+
+        mPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
+
+        if (token == null) {
+            // Restore preferences
+            token = mPreferences.getString(TOKEN, null);
+        }
+
+        if (trip_id == null) {
+            trip_id = mPreferences.getString(TRIP_ID, null);
+        }
 
         // Get a handle to the RecyclerView.
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_participants);
@@ -59,5 +75,31 @@ public class ParticipantsPageActivity extends AppCompatActivity {
         intent.putExtra(TOKEN, token);
         intent.putExtra(TRIP_ID, trip_id);
         startActivity(intent);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        if (token != null) {
+            preferencesEditor.putString(TOKEN, token);
+            preferencesEditor.putString(TRIP_ID, trip_id);
+        }
+
+        preferencesEditor.apply();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        if (token != null) {
+            preferencesEditor.putString(TOKEN, token);
+            preferencesEditor.putString(TRIP_ID, trip_id);
+        }
+
+        preferencesEditor.apply();
     }
 }

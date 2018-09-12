@@ -56,7 +56,9 @@ public class SendTripData extends AsyncTask<String, Void, String> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return NetworkUtils.getTripResponse(queryName, queryStart, queryEnd, token, imageString);
+
     }
 
 
@@ -67,14 +69,16 @@ public class SendTripData extends AsyncTask<String, Void, String> {
         byte[] byteFormat = stream.toByteArray();
         // get the base 64 string
         String imgString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+
         return imgString;
+
     }
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
 
-        float bitmapRatio = (float)width / (float) height;
+        float bitmapRatio = (float) width / (float) height;
         if (bitmapRatio > 1) {
             width = maxSize;
             height = (int) (width / bitmapRatio);

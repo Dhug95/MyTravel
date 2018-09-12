@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:padding="@dimen/default_padding"
+    android:padding="30dp"
     tools:context=".activities.DestPageActivity">
 
     <ImageView
         android:id="@+id/weather_image"
-        android:layout_width="198dp"
-        android:layout_height="216dp"
+        android:layout_width="170dp"
+        android:layout_height="174dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:visibility="invisible"
-        android:background="@drawable/sun" />
+        android:background="@drawable/sun"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/weather_title"
@@ -118,60 +118,67 @@
         android:id="@+id/currency_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/weather_wind"
+        android:layout_below="@id/wind"
         android:layout_centerHorizontal="true"
-        android:text="Convert Currency:"
+        android:layout_marginTop="20dp"
+        android:text="Currency"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/currency_input"
-        android:layout_width="match_parent"
+        android:layout_width="284dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/currency_title"
-        android:hint="Insert value"
+        android:layout_alignEnd="@+id/weather_title"
+        android:layout_below="@+id/currency_title"
+        android:layout_marginEnd="-67dp"
+        android:hint="@string/insert_value"
         android:inputType="number"
-        android:textColor="@color/colorPrimary"
+        android:padding="10dp"
+        android:textColor="@color/colorProfile"
         android:textColorHint="@color/colorFields"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/currency_output"
-        android:layout_width="match_parent"
+        android:layout_width="285dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/currency_input"
-        android:hint="Corresponding value"
-        android:textColor="@color/colorPrimary"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/currency_input"
+        android:hint="@string/output"
+        android:padding="10dp"
+        android:textColor="@color/colorProfile"
         android:textColorHint="@color/colorFields"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/convert_button"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/currency_output"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:background="@drawable/background_login"
         android:clickable="true"
         android:focusable="true"
         android:onClick="convertCurrency"
         android:padding="@dimen/default_padding"
-        android:text="Convert your m0m"
+        android:text="Convert"
         android:textAllCaps="false"
-        android:textColor="@color/colorRed"
+        android:textColor="@color/colorSecondary"
         android:textSize="18sp" />
 
 
     <TextView
         android:id="@+id/currency_input_code"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/currency_code"
+        android:layout_below="@+id/currency_title"
+        android:layout_toEndOf="@+id/currency_output"
         android:hint="EUR"
+        android:padding="10dp"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorFields"
         android:textSize="18dp"
@@ -179,10 +186,12 @@
 
     <TextView
         android:id="@+id/currency_code"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/currency_input"
+        android:layout_toEndOf="@+id/currency_output"
         android:hint="USD"
+        android:padding="10dp"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorFields"
         android:textSize="18dp"
@@ -190,19 +199,18 @@
 
     <Button
         android:id="@+id/select_currency"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
         android:background="@drawable/background_login"
         android:clickable="true"
         android:focusable="true"
         android:onClick="showCurrency"
         android:padding="@dimen/default_padding"
-        android:text="Select your currency"
+        android:text="Select currency"
         android:textAllCaps="false"
-        android:textColor="@color/colorRed"
+        android:textColor="@color/colorSecondary"
         android:textSize="18sp" />
 
 </RelativeLayout>

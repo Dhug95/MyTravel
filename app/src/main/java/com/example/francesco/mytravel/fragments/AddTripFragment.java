@@ -85,7 +85,7 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
 
         mPreferences = getActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
 
-        if (!startText.getText().toString().equals("") || !endText.getText().toString().equals("")) {
+        if (!(startText.getText().equals("") && endText.getText().equals(""))) {
             // Restore preferences
             tripName.setText(mPreferences.getString("NAME", null));
             uploadResult.setText(mPreferences.getString("IMAGE", null));
@@ -142,17 +142,6 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-
-        preferencesEditor.putString("NAME", tripName.getText().toString());
-        preferencesEditor.putString("IMAGE", uploadResult.getText().toString());
-
-        preferencesEditor.apply();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
 
         preferencesEditor.putString("NAME", tripName.getText().toString());

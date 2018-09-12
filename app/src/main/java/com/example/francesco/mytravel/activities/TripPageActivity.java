@@ -1,8 +1,10 @@
 package com.example.francesco.mytravel.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +38,9 @@ public class TripPageActivity extends AppCompatActivity {
     private static final String TRIP_ID =
             "com.example.francesco.mytravel.extra.TRIP_ID";
 
+    private static final String TRIP_NAME =
+            "com.example.francesco.mytravel.extra.TRIP_NAME";
+
     private static final String NUM_PARTICIPANTS =
             "com.example.francesco.mytravel.extra.NUM_PARTICIPANTS";
 
@@ -45,6 +50,7 @@ public class TripPageActivity extends AppCompatActivity {
 
     private String token;
     private String trip_id;
+    private String trip_name;
     private String num_participants;
 
     private final LinkedList<DestItem> mDestinationList = new LinkedList<>();
@@ -61,6 +67,7 @@ public class TripPageActivity extends AppCompatActivity {
         token = intent.getStringExtra(TOKEN);
         num_participants = intent.getStringExtra(NUM_PARTICIPANTS);
         trip_id = intent.getStringExtra(TRIP_ID);
+        trip_name = intent.getStringExtra(TRIP_NAME);
 
         mPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
 
@@ -74,6 +81,9 @@ public class TripPageActivity extends AppCompatActivity {
         if (num_participants == null) {
             num_participants = mPreferences.getString(NUM_PARTICIPANTS, null);
         }
+        if (trip_name == null) {
+            trip_name = mPreferences.getString(TRIP_NAME, null);
+        }
 
         // Get a handle to the RecyclerView.
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_destinations);
@@ -82,12 +92,6 @@ public class TripPageActivity extends AppCompatActivity {
         // Connect the adapter with the RecyclerView.
 
         new GetDestList(this, mDestinationList, mRecyclerView, mAdapter).execute(token, trip_id);
-
-        TextView infoParticipants = (TextView) findViewById(R.id.num_participants);
-        infoParticipants.setText("Participants: " + num_participants);
-
-        TextView infoBalance = (TextView) findViewById(R.id.balance);
-        infoBalance.setText("0");
 
     }
 
@@ -99,7 +103,16 @@ public class TripPageActivity extends AppCompatActivity {
     }
 
     public void deleteTrip(View view) {
-        new DeleteTrip(this).execute(trip_id, token);
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm")
+                .setMessage("Do you really want to delete the trip?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        new DeleteTrip(getApplicationContext()).execute(trip_id, token);
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
     }
 
     public void addDestination(View view) {
@@ -125,10 +138,9 @@ public class TripPageActivity extends AppCompatActivity {
                 String city = place.getName().toString();
                 Log.d(PLACES, "Place: " + city);
 
-                String country = "Random";
-
                 String latitude = Double.toString(place.getLatLng().latitude);
                 String longitude = Double.toString(place.getLatLng().longitude);
+                String country = place.getAddress().toString();
 
                 new AddDestination(this, token).execute(city, country, trip_id, latitude, longitude);
                 this.recreate();
@@ -153,9 +165,16 @@ public class TripPageActivity extends AppCompatActivity {
             preferencesEditor.putString(TOKEN, token);
             preferencesEditor.putString(TRIP_ID, trip_id);
             preferencesEditor.putString(NUM_PARTICIPANTS, num_participants);
+            preferencesEditor.putString(TRIP_NAME, trip_name);
         }
 
         preferencesEditor.apply();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTitle(trip_name);
     }
 
     @Override
@@ -167,6 +186,7 @@ public class TripPageActivity extends AppCompatActivity {
             preferencesEditor.putString(TOKEN, token);
             preferencesEditor.putString(TRIP_ID, trip_id);
             preferencesEditor.putString(NUM_PARTICIPANTS, num_participants);
+            preferencesEditor.putString(TRIP_NAME, trip_name);
         }
 
         preferencesEditor.apply();

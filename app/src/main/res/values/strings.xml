@@ -49,4 +49,7 @@
     <string name="temperature">Temperature</string>
     <string name="wind">Wind</string>
     <string name="title_activity_participant_page">ParticipantPageActivity</string>
+    <string name="output">Output</string>
+    <string name="insert_value">Insert value</string>
+    <string name="remove">Remove</string>
 </resources>

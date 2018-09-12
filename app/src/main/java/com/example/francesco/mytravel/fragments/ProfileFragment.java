@@ -29,6 +29,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private Intent intent;
 
+    private TextView mUsernameInfo;
+    private TextView mEmailInfo;
+    private FloatingActionButton fab;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -42,17 +46,22 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView mUsernameInfo = (TextView) v.findViewById(R.id.username_text);
-        TextView mEmailInfo = (TextView) v.findViewById(R.id.email_text);
+        mUsernameInfo = (TextView) v.findViewById(R.id.username_text);
+        mEmailInfo = (TextView) v.findViewById(R.id.email_text);
 
         Button logout = (Button) v.findViewById(R.id.logout_button);
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab_profile);
+        fab = (FloatingActionButton) v.findViewById(R.id.fab_profile);
         logout.setOnClickListener(this);
         fab.setOnClickListener(this);
 
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         new GetProfileInfo(getContext(), mUsernameInfo, mEmailInfo, fab).execute(token);
 
-        return v;
     }
 
     @Override

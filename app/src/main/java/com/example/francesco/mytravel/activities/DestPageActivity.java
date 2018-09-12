@@ -1,8 +1,12 @@
 package com.example.francesco.mytravel.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.tasks.DeleteTrip;
 import com.example.francesco.mytravel.tasks.GetCountryCurrency;
 import com.example.francesco.mytravel.tasks.GetWeatherInfo;
+import com.example.francesco.mytravel.tasks.RemoveDest;
 import com.mynameismidori.currencypicker.CurrencyPicker;
 import com.mynameismidori.currencypicker.CurrencyPickerListener;
 
@@ -32,6 +38,8 @@ public class DestPageActivity extends AppCompatActivity {
     private static final String LONGITUDE =
             "com.example.francesco.mytravel.extra.LONGITUDE";
 
+    private static final String NAME =
+            "com.example.francesco.mytravel.extra.NAME";
 
     private String token;
     private String trip_id;
@@ -51,6 +59,8 @@ public class DestPageActivity extends AppCompatActivity {
     private EditText inputCurrency;
     private TextView outputCurrency;
 
+    private String name;
+
     private CurrencyPicker picker;
 
     @Override
@@ -64,6 +74,7 @@ public class DestPageActivity extends AppCompatActivity {
         dest_id = intent.getStringExtra(DEST_ID);
         latitude = intent.getStringExtra(LATITUDE);
         longitude = intent.getStringExtra(LONGITUDE);
+        name = intent.getStringExtra(NAME);
 
         cityCountry = findViewById(R.id.city_country);
         weatherInfo = findViewById(R.id.weather_status);
@@ -104,7 +115,33 @@ public class DestPageActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_dest, menu);
+        return true;
+    }
+
     public void showCurrency(View view) {
         picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTitle(name);
+    }
+
+    public void removeDest(MenuItem item) {
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm")
+                .setMessage("Do you really want to remove destination?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        new RemoveDest(getApplicationContext()).execute(dest_id, trip_id, token);
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
     }
 }

@@ -1,9 +1,11 @@
 package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.example.francesco.mytravel.activities.LoggedHomeActivity;
 import com.example.francesco.mytravel.utils.NetworkUtils;
 
 import org.json.JSONObject;
@@ -39,7 +41,14 @@ public class SendAccountUpdate extends AsyncTask<String, Void, String> {
                 success = jsonObject.getString("success");
                 message = jsonObject.getString("message");
 
-                Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                if (success.equals("true")) {
+                    Intent intent = new Intent(mContext, LoggedHomeActivity.class);
+                    intent.putExtra("AFTER_UPDATE", "Info updated.");
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    mContext.startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();

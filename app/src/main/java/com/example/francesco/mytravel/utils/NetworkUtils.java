@@ -15,7 +15,7 @@ import java.util.Map;
 public class NetworkUtils {
 
     //private static final String RAILS_BASE_URL = "https://my-travel-backend.herokuapp.com/app"; // Base URI for the Node JS App
-    private static final String RAILS_BASE_URL = "http://192.168.43.201:8080/app"; // Base URI for the Node JS App
+    private static final String RAILS_BASE_URL = "http://192.168.1.3:8080/app"; // Base URI for the Node JS App
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -28,6 +28,7 @@ public class NetworkUtils {
     private static final String END = "end";
     private static final String IMAGE = "image";
     private static final String TRIP_ID = "trip_id";
+    private static final String DEST_ID = "dest_id";
     private static final String LATITUDE = "latitude";
     private static final String LONGITUDE = "longitude";
     private static final String AMOUNT = "amount";
@@ -66,14 +67,25 @@ public class NetworkUtils {
 
     public static String getTripResponse(String name, String start, String end, String token, String image) {
 
-        //Build up your query URI
-        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
-                .appendQueryParameter(NAME, name)
-                .appendQueryParameter(START, start)
-                .appendQueryParameter(END, end)
-                .appendQueryParameter(TOKEN, token)
-                .appendQueryParameter(IMAGE, image)
-                .build();
+        Uri builtURI;
+
+        if (image != null) {
+            //Build up your query URI
+            builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
+                    .appendQueryParameter(NAME, name)
+                    .appendQueryParameter(START, start)
+                    .appendQueryParameter(END, end)
+                    .appendQueryParameter(TOKEN, token)
+                    .appendQueryParameter(IMAGE, image)
+                    .build();
+        } else {
+            builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
+                    .appendQueryParameter(NAME, name)
+                    .appendQueryParameter(START, start)
+                    .appendQueryParameter(END, end)
+                    .appendQueryParameter(TOKEN, token)
+                    .build();
+        }
 
         return sendRequest(builtURI, "POST");
     }
@@ -236,7 +248,7 @@ public class NetworkUtils {
                 .appendQueryParameter(AMOUNT, amount)
                 .build();
 
-        return  sendRequest(builtURI, "POST");
+        return sendRequest(builtURI, "POST");
     }
 
     public static String getPaymentList(String token, String trip_id) {
@@ -245,7 +257,17 @@ public class NetworkUtils {
                 .appendQueryParameter(TOKEN, token)
                 .build();
 
-        return  sendRequest(builtURI, "GET");
+        return sendRequest(builtURI, "GET");
+    }
+
+    public static String removeDest(String dest_id, String trip_id, String token) {
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/destinations/" + dest_id).buildUpon()
+                .appendQueryParameter(DEST_ID, dest_id)
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "DELETE");
     }
 
     private static String sendRequest(Uri builtURI, String method) {
@@ -313,5 +335,4 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
-
 }

@@ -79,6 +79,7 @@
             android:parentActivityName=".activities.TripPageActivity" />
         <activity
             android:name=".activities.ParticipantsPageActivity"
+            android:label="Participants"
             android:parentActivityName=".activities.TripPageActivity" />
         <activity
             android:name=".activities.AddParticipantActivity"

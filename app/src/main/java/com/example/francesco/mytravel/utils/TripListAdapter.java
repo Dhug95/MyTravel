@@ -39,8 +39,8 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
     public void onBindViewHolder(TripViewHolder holder, int position) {
         TripItem mCurrent = mTripList.get(position);
         holder.tripNameView.setText(mCurrent.name);
-        holder.tripStartView.setText(mCurrent.start);
-        holder.tripEndView.setText(mCurrent.end);
+        holder.tripStartView.setText("From: " + mCurrent.start);
+        holder.tripEndView.setText("To: " + mCurrent.end);
 
         Log.d("Image", mCurrent.img);
         byte[] decodedString = Base64.decode(mCurrent.img, Base64.DEFAULT);

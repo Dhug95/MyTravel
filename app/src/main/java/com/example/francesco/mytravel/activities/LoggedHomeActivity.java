@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.francesco.mytravel.R;
 import com.example.francesco.mytravel.fragments.AddTripFragment;
@@ -40,6 +41,9 @@ public class LoggedHomeActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_add_trip:
+                    bundle.remove(START);
+                    bundle.remove(END);
+                    addTripFragment = new AddTripFragment();
                     addTripFragment.setArguments(bundle);
                     setFragment(addTripFragment);
                     return true;
@@ -60,6 +64,15 @@ public class LoggedHomeActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container, newFragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        String msg = intent.getStringExtra("AFTER_UPDATE");
+        if (msg != null) {
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

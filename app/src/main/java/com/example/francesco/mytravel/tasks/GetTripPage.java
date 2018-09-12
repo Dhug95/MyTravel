@@ -25,6 +25,9 @@ public class GetTripPage extends AsyncTask<String, Void, String> {
     private static final String TRIP_ID =
             "com.example.francesco.mytravel.extra.TRIP_ID";
 
+    private static final String TRIP_NAME =
+            "com.example.francesco.mytravel.extra.TRIP_NAME";
+
     public GetTripPage(Context mContext) {
         this.mContext = mContext;
     }
@@ -43,6 +46,7 @@ public class GetTripPage extends AsyncTask<String, Void, String> {
             JSONObject jsonObject = new JSONObject(s);
             JSONArray participants = jsonObject.getJSONArray("participants");
             String numParticipants = Integer.toString(participants.length());
+            String tripName = jsonObject.getString("name");
 
             // Go to the trip page
             Intent intent = new Intent(mContext, TripPageActivity.class);
@@ -50,6 +54,7 @@ public class GetTripPage extends AsyncTask<String, Void, String> {
             intent.putExtra(TOKEN, token);
             intent.putExtra(NUM_PARTICIPANTS, numParticipants);
             intent.putExtra(TRIP_ID, trip_id);
+            intent.putExtra(TRIP_NAME, tripName);
             mContext.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();

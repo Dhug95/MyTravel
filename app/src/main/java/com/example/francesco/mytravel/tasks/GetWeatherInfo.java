@@ -70,9 +70,9 @@ public class GetWeatherInfo extends AsyncTask<String, Void, String> {
                 temp + " " + country);
 
             cityCountry.setText(country);
-            weatherInfo.setText("Status: " + main_condition + ", " + condition_desc);
-            temperature.setText("Temperature: " + temp);
-            wind.setText("Wind speed: " + windSpeed);
+            weatherInfo.setText(main_condition + ", " + condition_desc);
+            temperature.setText(temp + " °C");
+            wind.setText(windSpeed + " km/h");
 
             if (main_condition.equals("Clear")) {
                 weatherImage.setBackgroundResource(R.drawable.sun);
