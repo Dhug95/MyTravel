@@ -4,52 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/home_padding"
     tools:context=".activities.AddParticipantActivity">
-
-
-    <TextView
-        android:id="@+id/sysmsg"
-        android:layout_width="wrap_content"
-        android:layout_height="58dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="20dp"
-        android:text="Add new participants to your trip"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20dp"
-        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/part_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="241dp"
-        android:ems="10"
-        android:hint="add the new participant userName"
-        android:inputType="textPersonName"
-        android:text=""
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="Username"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorFields" />
+
+
+    <View
+        android:id="@+id/part_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/part_name"
+        android:background="@color/colorSecondary" />
+
 
     <Button
         android:id="@+id/add_p_button"
-        android:layout_width="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="183dp"
+        android:layout_below="@id/part_line"
+        android:layout_marginTop="@dimen/home_padding"
         android:background="@drawable/background_signup"
         android:clickable="true"
         android:focusable="true"
         android:onClick="addNewParticipant"
         android:padding="@dimen/default_padding"
-        android:text="Add participant"
-        android:textColor="@color/colorFields"
+        android:text="Add new participant"
+        android:textAllCaps="false"
+        android:textColor="#fff"
         android:textSize="18sp"
-        android:textStyle="bold"
 
         />
 

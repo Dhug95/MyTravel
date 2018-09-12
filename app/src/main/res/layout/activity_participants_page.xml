@@ -9,11 +9,28 @@
     android:padding="@dimen/home_padding"
     tools:context=".activities.ParticipantsPageActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_participants"
+    <TextView
+        android:id="@+id/number_part"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/default_padding"
+        android:layout_centerHorizontal="true"
+        android:hint="Number of participants:"
+        android:textSize="20sp" />
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/add_participant" />
+        android:layout_above="@id/add_participant"
+        android:layout_below="@id/number_part">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_participants"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_participant"

@@ -42,6 +42,7 @@ public class SendNewParticipant extends AsyncTask<String, Void, String> {
             message = jsonObject.getString("message");
 
             if (success.equals("true")) {
+                Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(mContext, ParticipantsPageActivity.class);
                 mContext.startActivity(intent);
             } else {

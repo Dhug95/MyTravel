@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.francesco.mytravel.ClickListener;
 import com.example.francesco.mytravel.R;
@@ -37,6 +38,8 @@ public class ParticipantsPageActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.android.hellosharedprefs";
 
+    private TextView numberPart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,8 @@ public class ParticipantsPageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         token = intent.getStringExtra(TOKEN);
         trip_id = intent.getStringExtra(TRIP_ID);
+
+        numberPart = findViewById(R.id.number_part);
 
         mPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
 
@@ -60,13 +65,11 @@ public class ParticipantsPageActivity extends AppCompatActivity {
         // Get a handle to the RecyclerView.
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_participants);
         // Create an adapter and supply the data to be displayed.
-        mAdapter = new PartListAdapter(this, mParticipantsList, new ClickListener() {
+        mAdapter = new PartListAdapter(this, mParticipantsList, trip_id, token, new ClickListener() {
             @Override public void onPositionClicked(int position) {
                 Log.d("Click: ", "Button pressed");
             }
         });
-
-        new GetPartList(this, mParticipantsList, mRecyclerView, mAdapter).execute(token, trip_id);
 
     }
 
@@ -88,6 +91,13 @@ public class ParticipantsPageActivity extends AppCompatActivity {
         }
 
         preferencesEditor.apply();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new GetPartList(this, mParticipantsList, mRecyclerView, mAdapter, numberPart).execute(token, trip_id);
+
     }
 
     @Override

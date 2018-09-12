@@ -6,6 +6,7 @@ import android.provider.Telephony;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.francesco.mytravel.utils.NetworkUtils;
 import com.example.francesco.mytravel.utils.PartListAdapter;
@@ -24,12 +25,15 @@ public class GetPartList extends AsyncTask<String, Void, String> {
     private RecyclerView mRecyclerView;
     private PartListAdapter mAdapter;
 
+    private TextView numberPart;
+
     public GetPartList(Context mContext, LinkedList<String> mPartList,
-                       RecyclerView mRecyclerView, PartListAdapter mAdapter) {
+                       RecyclerView mRecyclerView, PartListAdapter mAdapter, TextView numberPart) {
         this.mContext = mContext;
         this.mPartList = mPartList;
         this.mRecyclerView = mRecyclerView;
         this.mAdapter = mAdapter;
+        this.numberPart = numberPart;
     }
 
     @Override
@@ -56,6 +60,8 @@ public class GetPartList extends AsyncTask<String, Void, String> {
                 String next = jsonObject.getString(i);
                 mPartList.add(next);
             }
+
+            numberPart.setText("Number of participants: " + mPartList.size());
 
             mRecyclerView.setAdapter(mAdapter);
             // Give the RecyclerView a default layout manager.

@@ -270,6 +270,16 @@ public class NetworkUtils {
         return sendRequest(builtURI, "DELETE");
     }
 
+    public static String removeParticipant(String trip_id, String username, String token) {
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/remove_part").buildUpon()
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(USERNAME, username)
+                .appendQueryParameter(TOKEN, token)
+                .build();
+
+        return sendRequest(builtURI, "DELETE");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -335,4 +345,5 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
+
 }

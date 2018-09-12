@@ -1,8 +1,10 @@
 package com.example.francesco.mytravel.utils;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.widget.Toast;
 import com.example.francesco.mytravel.ClickListener;
 import com.example.francesco.mytravel.R;
 import com.example.francesco.mytravel.fragments.TripsFragment;
+import com.example.francesco.mytravel.tasks.DeletePart;
+import com.example.francesco.mytravel.tasks.DeleteTrip;
 import com.example.francesco.mytravel.tasks.GetTripPage;
 
 import java.lang.ref.WeakReference;
@@ -29,10 +33,15 @@ public class PartListAdapter extends RecyclerView.Adapter<PartListAdapter.PartVi
 
     private final ClickListener listener;
 
-    public PartListAdapter(Context context, LinkedList<String> partList, ClickListener listener) {
+    private String trip_id;
+    private String token;
+
+    public PartListAdapter(Context context, LinkedList<String> partList, String trip_id, String token, ClickListener listener) {
         this.listener = listener;
         mInflater = LayoutInflater.from(context);
         this.mPartList = partList;
+        this.trip_id = trip_id;
+        this.token = token;
     }
 
 
@@ -89,7 +98,17 @@ public class PartListAdapter extends RecyclerView.Adapter<PartListAdapter.PartVi
         public void onClick(View v) {
 
             if (v.getId() == deleteButton.getId()) {
-                Toast.makeText(v.getContext(), "ITEM PRESSED = " + mPartList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                final String username = mPartList.get(getAdapterPosition());
+                new AlertDialog.Builder(mContext)
+                        .setTitle("Confirm")
+                        .setMessage("Do you really want to remove participant?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                new DeletePart(mContext).execute(trip_id, username, token);
+                            }})
+                        .setNegativeButton(android.R.string.no, null).show();
 
             } else {
                 Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
