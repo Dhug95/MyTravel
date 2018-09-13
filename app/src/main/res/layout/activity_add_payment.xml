@@ -4,43 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/home_padding"
     tools:context=".activities.AddPaymentActivity">
 
     <EditText
         android:id="@+id/payment_amount"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="163dp"
-        android:ems="10"
-        android:hint="Add the amount of money"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColorHint="@color/colorProfile"
-        android:textSize="18dp" />
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@android:color/transparent"
+        android:drawablePadding="12dp"
+        android:hint="Amount"
+        android:inputType="number"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorFields" />
+
 
     <View
-        android:layout_width="300dp"
-        android:layout_height="2dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
+        android:id="@+id/payment_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/payment_amount"
         android:background="@color/colorSecondary" />
+
 
     <Button
         android:id="@+id/add_payment_button"
-        android:layout_width="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="183dp"
+        android:layout_below="@id/payment_line"
+        android:layout_marginTop="@dimen/home_padding"
         android:background="@drawable/background_signup"
         android:clickable="true"
         android:focusable="true"
         android:onClick="checkPaymentData"
         android:padding="@dimen/default_padding"
-        android:text="Add Payment"
-        android:textColor="@color/colorFields"
+        android:text="Add new payment"
+        android:textAllCaps="false"
+        android:textColor="#fff"
         android:textSize="18sp"
-        android:textStyle="bold" />
+
+        />
+
 </RelativeLayout>

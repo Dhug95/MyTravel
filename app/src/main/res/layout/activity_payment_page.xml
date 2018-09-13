@@ -4,54 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="@dimen/default_padding"
     tools:context=".activities.PaymentPageActivity">
-
 
     <TextView
         android:id="@+id/currentBalance"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:paddingLeft="20dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/default_padding"
         android:text="Your Balance is :"
         android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/balance_val"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/currentBalance"
-        android:layout_marginTop="-11dp"
-        android:layout_toEndOf="@+id/currentBalance"
-        android:ems="10"
-        android:inputType="number"
-        android:text="0" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/fab_payment"
+        android:layout_below="@id/currentBalance">
 
-    <View
-        android:layout_width="300dp"
-        android:layout_height="2dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="157dp"
-        android:background="@color/colorSecondary" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/payment_rec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/payment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/currentBalance"
-        android:layout_marginTop="212dp"
-        android:paddingLeft="20dp"
-        android:text="Payments :"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+    </FrameLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_payment"
@@ -59,20 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="53dp"
+        android:backgroundTint="@color/colorGreen"
         android:onClick="gotoAddPayment"
-        android:layout_marginEnd="28dp"
-        app:backgroundTint="@color/colorPrimary"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_add_white_24dp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/payment_rec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/currentBalance"
-        android:layout_centerVertical="true"
-        android:padding="20dp" />
 
 
 </RelativeLayout>

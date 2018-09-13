@@ -5,24 +5,22 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:padding="6dp">
+    android:padding="@dimen/default_padding">
 
     <TextView
         android:id="@+id/payment_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
         android:hint="Username"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="15sp" />
+
 
     <TextView
         android:id="@+id/payment_amount"
-        android:layout_width="wrap_content"
-        android:layout_toEndOf="@id/payment_username"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/payment_username"
         android:hint="Amount"
         android:textSize="15sp"
         android:textStyle="bold" />

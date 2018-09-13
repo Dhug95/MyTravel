@@ -216,6 +216,7 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
         String queryName = tripName.getText().toString();
         String queryStart = startText.getText().toString();
         String queryEnd = endText.getText().toString();
-        new SendTripData(getContext()).execute(queryName, queryStart, queryEnd, filePath, token);
+        String path = uploadResult.getText().toString();
+        new SendTripData(getContext()).execute(queryName, queryStart, queryEnd, path, token);
     }
 }

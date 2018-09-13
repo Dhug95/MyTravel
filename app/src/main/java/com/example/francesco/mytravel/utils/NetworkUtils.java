@@ -15,7 +15,7 @@ import java.util.Map;
 public class NetworkUtils {
 
     //private static final String RAILS_BASE_URL = "https://my-travel-backend.herokuapp.com/app"; // Base URI for the Node JS App
-    private static final String RAILS_BASE_URL = "http://192.168.1.3:8080/app"; // Base URI for the Node JS App
+    private static final String RAILS_BASE_URL = "http://192.168.43.201:8080/app"; // Base URI for the Node JS App
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -29,6 +29,7 @@ public class NetworkUtils {
     private static final String IMAGE = "image";
     private static final String TRIP_ID = "trip_id";
     private static final String DEST_ID = "dest_id";
+    private static final String PAYMENT_ID = "payment_id";
     private static final String LATITUDE = "latitude";
     private static final String LONGITUDE = "longitude";
     private static final String AMOUNT = "amount";
@@ -280,6 +281,19 @@ public class NetworkUtils {
         return sendRequest(builtURI, "DELETE");
     }
 
+    public static String removePayment(String trip_id, String payment_id, String token, String username,
+                                       String amount) {
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips/" + trip_id + "/remove_payment").buildUpon()
+                .appendQueryParameter(TRIP_ID, trip_id)
+                .appendQueryParameter(PAYMENT_ID, payment_id)
+                .appendQueryParameter(TOKEN, token)
+                .appendQueryParameter(USERNAME, username)
+                .appendQueryParameter(AMOUNT, amount)
+                .build();
+
+        return sendRequest(builtURI, "DELETE");
+    }
+
     private static String sendRequest(Uri builtURI, String method) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -345,5 +359,4 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
-
 }

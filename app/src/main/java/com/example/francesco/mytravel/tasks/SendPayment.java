@@ -1,11 +1,17 @@
 package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.francesco.mytravel.activities.AddPaymentActivity;
+import com.example.francesco.mytravel.activities.ParticipantsPageActivity;
+import com.example.francesco.mytravel.activities.PaymentPageActivity;
 import com.example.francesco.mytravel.utils.NetworkUtils;
+
+import org.json.JSONObject;
 
 public class SendPayment extends AsyncTask<String, Void, String> {
 
@@ -29,6 +35,26 @@ public class SendPayment extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        Log.d("PAYMENT RESULT: ", s);
+        Log.d("Add payment result: ", s);
+        try {
+            JSONObject jsonObject = new JSONObject(s);
+
+            String success;
+            String message;
+
+            success = jsonObject.getString("success");
+            message = jsonObject.getString("message");
+
+            if (success.equals("true")) {
+                Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(mContext, PaymentPageActivity.class);
+                mContext.startActivity(intent);
+            } else {
+                Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+            }
+
+        } catch (Exception e) {
+            Log.d("Exception: ", e.getMessage());
+        }
     }
 }
