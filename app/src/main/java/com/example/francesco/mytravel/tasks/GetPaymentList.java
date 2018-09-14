@@ -2,12 +2,15 @@ package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.francesco.mytravel.ClickListener;
 import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.activities.ParticipantsPageActivity;
 import com.example.francesco.mytravel.activities.PaymentPageActivity;
 import com.example.francesco.mytravel.utils.NetworkUtils;
 import com.example.francesco.mytravel.utils.PaymentItem;
@@ -28,12 +31,18 @@ public class GetPaymentList extends AsyncTask<String, Void, String> {
     private RecyclerView mRecyclerView;
     private PaymentListAdapter mAdapter;
 
+    private TextView currentBalance;
+
+    private String myUsername;
+    private Float numberUsers;
+
     public GetPaymentList(Context mContext, LinkedList<PaymentItem> mPaymentList,
-                          RecyclerView mRecyclerView, PaymentListAdapter mAdapter) {
+                          RecyclerView mRecyclerView, PaymentListAdapter mAdapter, TextView currentBalance) {
         this.mContext = mContext;
         this.mPaymentList = mPaymentList;
         this.mRecyclerView = mRecyclerView;
         this.mAdapter = mAdapter;
+        this.currentBalance = currentBalance;
 
     }
 
@@ -57,8 +66,15 @@ public class GetPaymentList extends AsyncTask<String, Void, String> {
 
         reset(mPaymentList);
 
+
         try {
-            JSONArray jsonObject = new JSONArray(s);
+            JSONObject porcoddio = new JSONObject(s);
+
+            JSONArray jsonObject = porcoddio.getJSONArray("payments");
+
+            myUsername = porcoddio.getString("user");
+            numberUsers = Float.valueOf(porcoddio.getString("number"));
+
             for (int i = 0; i < jsonObject.length(); i++) {
                 JSONObject nextJSON = jsonObject.getJSONObject(i);
                 String username = nextJSON.getString("username");
@@ -68,6 +84,8 @@ public class GetPaymentList extends AsyncTask<String, Void, String> {
                 mPaymentList.add(next);
             }
 
+            calculateBalance();
+
             mRecyclerView.setAdapter(mAdapter);
             // Give the RecyclerView a default layout manager.
             mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -75,5 +93,19 @@ public class GetPaymentList extends AsyncTask<String, Void, String> {
         } catch (Exception e) {
             Log.d("Exception: ", e.getMessage());
         }
+    }
+
+    private void calculateBalance() {
+        Float balance = 0.f;
+        for(PaymentItem p: mPaymentList) {
+            Float x = Float.valueOf(p.amount);
+            Float single_pay = x / numberUsers;
+            if (myUsername.equals(p.user)) {
+                balance = balance + (x - single_pay);
+            } else {
+                balance = balance - single_pay;
+            }
+        }
+        currentBalance.setText(Float.toString(balance));
     }
 }

@@ -3,6 +3,8 @@ package com.example.francesco.mytravel.utils;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.francesco.mytravel.activities.ParticipantsPageActivity;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +17,7 @@ import java.util.Map;
 public class NetworkUtils {
 
     //private static final String RAILS_BASE_URL = "https://my-travel-backend.herokuapp.com/app"; // Base URI for the Node JS App
-    private static final String RAILS_BASE_URL = "http://192.168.43.201:8080/app"; // Base URI for the Node JS App
+    private static final String RAILS_BASE_URL = "http://192.168.1.3:8080/app"; // Base URI for the Node JS App
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";

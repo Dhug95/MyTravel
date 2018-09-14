@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.francesco.mytravel.ClickListener;
 import com.example.francesco.mytravel.R;
@@ -27,12 +28,18 @@ public class PaymentPageActivity extends AppCompatActivity {
     private static final String TRIP_ID =
             "com.example.francesco.mytravel.extra.TRIP_ID";
 
+    private static final String NUM_PARTICIPANTS =
+            "com.example.francesco.mytravel.extra.NUM_PARTICIPANTS";
+
     private String token;
     private String trip_id;
+    private String num_participants;
 
     private final LinkedList<PaymentItem> mPaymentList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private PaymentListAdapter mAdapter;
+
+    private TextView currentBalance;
 
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.android.hellosharedprefs";
@@ -46,6 +53,8 @@ public class PaymentPageActivity extends AppCompatActivity {
         token = intent.getStringExtra(TOKEN);
         trip_id = intent.getStringExtra(TRIP_ID);
 
+        currentBalance = findViewById(R.id.currentBalance);
+
         mPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
 
         if (token == null) {
@@ -54,6 +63,10 @@ public class PaymentPageActivity extends AppCompatActivity {
         }
         if (trip_id == null) {
             trip_id = mPreferences.getString(TRIP_ID, null);
+        }
+
+        if (num_participants == null) {
+            num_participants = mPreferences.getString(NUM_PARTICIPANTS, null);
         }
 
         // Get a handle to the RecyclerView.
@@ -96,7 +109,7 @@ public class PaymentPageActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        new GetPaymentList(this, mPaymentList, mRecyclerView, mAdapter).execute(token, trip_id);
+        new GetPaymentList(this, mPaymentList, mRecyclerView, mAdapter, currentBalance).execute(token, trip_id);
     }
 
     public void gotoAddPayment(View view) {

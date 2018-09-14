@@ -28,6 +28,9 @@ public class ParticipantsPageActivity extends AppCompatActivity {
     private static final String TRIP_ID =
             "com.example.francesco.mytravel.extra.TRIP_ID";
 
+    private static final String NUM_PARTICIPANTS =
+            "com.example.francesco.mytravel.extra.NUM_PARTICIPANTS";
+
     private String token;
     private String trip_id;
 
@@ -39,6 +42,16 @@ public class ParticipantsPageActivity extends AppCompatActivity {
     private String sharedPrefFile = "com.example.android.hellosharedprefs";
 
     private TextView numberPart;
+
+    private static Integer num_participants;
+
+    public static Integer getParticipants() {
+        return num_participants;
+    }
+
+    public static void setParticipants(Integer num) {
+        num_participants = num;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +101,7 @@ public class ParticipantsPageActivity extends AppCompatActivity {
         if (token != null) {
             preferencesEditor.putString(TOKEN, token);
             preferencesEditor.putString(TRIP_ID, trip_id);
+            preferencesEditor.putString(NUM_PARTICIPANTS, numberPart.getText().toString());
         }
 
         preferencesEditor.apply();
@@ -97,7 +111,6 @@ public class ParticipantsPageActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         new GetPartList(this, mParticipantsList, mRecyclerView, mAdapter, numberPart).execute(token, trip_id);
-
     }
 
     @Override
@@ -108,6 +121,7 @@ public class ParticipantsPageActivity extends AppCompatActivity {
         if (token != null) {
             preferencesEditor.putString(TOKEN, token);
             preferencesEditor.putString(TRIP_ID, trip_id);
+            preferencesEditor.putString(NUM_PARTICIPANTS, numberPart.getText().toString());
         }
 
         preferencesEditor.apply();

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.francesco.mytravel.activities.ParticipantsPageActivity;
 import com.example.francesco.mytravel.utils.NetworkUtils;
 import com.example.francesco.mytravel.utils.PartListAdapter;
 import com.example.francesco.mytravel.utils.TripItem;
@@ -62,6 +63,8 @@ public class GetPartList extends AsyncTask<String, Void, String> {
             }
 
             numberPart.setText("Number of participants: " + mPartList.size());
+
+            ParticipantsPageActivity.setParticipants(mPartList.size());
 
             mRecyclerView.setAdapter(mAdapter);
             // Give the RecyclerView a default layout manager.

@@ -144,4 +144,12 @@ public class DestPageActivity extends AppCompatActivity {
                     }})
                 .setNegativeButton(android.R.string.no, null).show();
     }
+
+    public void swapCurrency(View view) {
+        String temp = inputCurrencyCode.getText().toString();
+        inputCurrencyCode.setText(mCurrency.getText().toString());
+        mCurrency.setText(temp);
+        inputCurrency.setText("");
+        outputCurrency.setText("");
+    }
 }
