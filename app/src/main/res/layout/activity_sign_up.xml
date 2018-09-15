@@ -1,100 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/home_padding"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.SignUpActivity">
 
     <EditText
         android:id="@+id/email_signup"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:padding="8dp"
+        android:padding="@dimen/small_padding"
         android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorFields" />
+        android:textColorHint="@color/colorFields"
+        app:layout_constraintBottom_toTopOf="@id/view3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:layout_width="match_parent"
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="@color/colorSecondary" />
+        android:background="@color/colorSecondary"
+        android:layout_marginBottom="@dimen/small_padding"
+        app:layout_constraintBottom_toTopOf="@id/username_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_signup" />
 
     <EditText
         android:id="@+id/username_signup"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/username"
         android:inputType="textEmailAddress"
-        android:padding="8dp"
+        android:padding="@dimen/small_padding"
         android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorFields" />
+        android:textColorHint="@color/colorFields"
+        app:layout_constraintBottom_toTopOf="@id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <View
-        android:layout_width="match_parent"
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="@color/colorSecondary" />
+        android:layout_marginBottom="@dimen/small_padding"
+        android:background="@color/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@id/psw_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_signup" />
 
     <EditText
         android:id="@+id/psw_signup"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:padding="8dp"
+        android:padding="@dimen/small_padding"
         android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorFields" />
+        android:textColorHint="@color/colorFields"
+        app:layout_constraintBottom_toTopOf="@id/view5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
 
     <View
-        android:layout_width="match_parent"
+        android:id="@+id/view5"
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="@color/colorSecondary" />
+        android:layout_marginBottom="@dimen/small_padding"
+        android:background="@color/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@id/psw_signup_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/psw_signup" />
 
     <EditText
         android:id="@+id/psw_signup_confirm"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
         android:background="@android:color/transparent"
         android:drawablePadding="12dp"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:padding="8dp"
+        android:padding="@dimen/small_padding"
         android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorFields" />
+        android:textColorHint="@color/colorFields"
+        app:layout_constraintBottom_toTopOf="@id/view6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <View
-        android:layout_width="match_parent"
+        android:id="@+id/view6"
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="@color/colorSecondary" />
+        android:background="@color/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/small_padding"
+        app:layout_constraintTop_toBottomOf="@+id/psw_signup_confirm" />
 
     <Button
         android:id="@+id/signup_button"
         style="@style/Base.TextAppearance.AppCompat.Body1"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/home_padding"
         android:background="@drawable/background_signup"
         android:clickable="true"
         android:focusable="true"
         android:onClick="checkDataEntered"
-        android:padding="@dimen/default_padding"
         android:text="@string/create_account"
         android:textAllCaps="false"
         android:textColor="#fff"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

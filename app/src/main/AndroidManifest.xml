@@ -18,7 +18,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAd_zGZoCE48LzkEdt8RaJtZ18RR5GapFw" />
 
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +30,8 @@
         <activity
             android:name=".activities.SignUpActivity"
             android:label="Sign Up"
-            android:parentActivityName=".activities.MainActivity">
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.francesco.mytravel.activities.MainActivity" />
@@ -36,11 +39,13 @@
         <activity
             android:name=".activities.LoggedHomeActivity"
             android:label="Home page"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.UpdateUserActivity"
             android:label="@string/update_info"
-            android:parentActivityName=".activities.LoggedHomeActivity">
+            android:parentActivityName=".activities.LoggedHomeActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.francesco.mytravel.activities.LoggedHomeActivity" />
@@ -48,7 +53,8 @@
         <activity
             android:name=".activities.TripPageActivity"
             android:label="@string/trip_overview"
-            android:parentActivityName=".activities.LoggedHomeActivity" />
+            android:parentActivityName=".activities.LoggedHomeActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -57,10 +63,12 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -73,26 +81,32 @@
         <activity
             android:name=".activities.ForgotPasswordActivity"
             android:label="@string/help"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.DestPageActivity"
-            android:parentActivityName=".activities.TripPageActivity" />
+            android:parentActivityName=".activities.TripPageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ParticipantsPageActivity"
             android:label="Participants"
-            android:parentActivityName=".activities.TripPageActivity" />
+            android:parentActivityName=".activities.TripPageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AddParticipantActivity"
             android:label="Add new participant"
-            android:parentActivityName=".activities.ParticipantsPageActivity" />
+            android:parentActivityName=".activities.ParticipantsPageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.PaymentPageActivity"
             android:label="Payments"
-            android:parentActivityName=".activities.TripPageActivity" />
+            android:parentActivityName=".activities.TripPageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AddPaymentActivity"
             android:label="Add new payment"
-            android:parentActivityName=".activities.PaymentPageActivity" />
+            android:parentActivityName=".activities.PaymentPageActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

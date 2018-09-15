@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:padding="@dimen/home_padding"
+    android:padding="@dimen/large_padding"
     tools:context=".activities.ParticipantsPageActivity">
 
     <TextView

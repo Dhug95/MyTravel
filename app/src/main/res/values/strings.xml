@@ -6,7 +6,7 @@
     <string name="remember_me">Remember me</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign up</string>
-    <string name="forget_your_password">Forget your Password?</string>
+    <string name="forget_your_password">Forgot your password?</string>
     <string name="email">Email</string>
     <string name="create_account">Create account</string>
     <string name="confirm_password">Confirm password</string>
@@ -24,8 +24,8 @@
     <string name="start_date">Start date</string>
     <string name="end_date">End date</string>
     <string name="add_to_the_list">Add to the list</string>
-    <string name="start">Start:</string>
-    <string name="end">End:</string>
+    <string name="start">Pick a start date</string>
+    <string name="end">Pick an end date</string>
     <string name="title_activity_update_user">UpdateUserActivity</string>
     <string name="password">Password</string>
     <string name="new_email">New email</string>
@@ -52,4 +52,10 @@
     <string name="output">Output</string>
     <string name="insert_value">Insert value</string>
     <string name="remove">Remove</string>
+    <string name="add_trip">Add trip</string>
+    <string name="select_a_picture_for_the_trip_not_mandatory">Select a picture for the trip (not mandatory)</string>
+    <string name="upload_image">Upload image</string>
+    <string name="your_trips">Your trips</string>
+    <string name="trip_start">Trip start</string>
+    <string name="trip_end">Trip end</string>
 </resources>

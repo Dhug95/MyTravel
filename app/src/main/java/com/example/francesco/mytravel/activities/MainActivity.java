@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         psw_login.setText(mPreferences.getString("PSW", null));
         remember_me.setChecked(mPreferences.getBoolean("REMEMBER", false));
 
+        // Check if back from password retrieve
         Intent intent = getIntent();
         String forgot_psw = intent.getStringExtra(FORGOT_PSW);
         if (forgot_psw != null) {
@@ -111,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Cancel by user", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onError(FacebookException exception) {
-                Log.d("Error: ", exception.toString());
+                Log.d("Facebook error: ", exception.getMessage());
             }
         });
     }

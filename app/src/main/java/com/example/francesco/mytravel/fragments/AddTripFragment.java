@@ -93,7 +93,7 @@ public class AddTripFragment extends Fragment implements View.OnClickListener {
 
         Button startDateButton = (Button) v.findViewById(R.id.start_date_button);
         Button endDateButton = (Button) v.findViewById(R.id.end_date_button);
-        FloatingActionButton createTrip = (FloatingActionButton) v.findViewById(R.id.create_trip);
+        Button createTrip = (Button) v.findViewById(R.id.create_trip);
         Button uploadImage = (Button) v.findViewById(R.id.upload_image);
         Button resetButton = (Button) v.findViewById(R.id.button_reset);
 

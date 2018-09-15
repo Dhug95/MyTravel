@@ -42,11 +42,11 @@ public class SendAccountCreation extends AsyncTask<String, Void, String> {
                 success = jsonObject.getString("success");
                 message = jsonObject.getString("message");
 
+                Toast t = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
+                t.show();
+
                 if (success.equals("true")) { // Go to the logged home
                     new SendLoginData(mContext).execute(email, password);
-                } else {
-                    Toast t = Toast.makeText(mContext, message, Toast.LENGTH_LONG);
-                    t.show();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
