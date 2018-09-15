@@ -19,4 +19,11 @@
         android:title="@string/payments"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_delete"
+        android:onClick="deleteTrip"
+        android:orderInCategory="30"
+        android:title="@string/delete"
+        app:showAsAction="never" />
+
 </menu>

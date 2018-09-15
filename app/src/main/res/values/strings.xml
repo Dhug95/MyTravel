@@ -58,4 +58,6 @@
     <string name="your_trips">Your trips</string>
     <string name="trip_start">Trip start</string>
     <string name="trip_end">Trip end</string>
+    <string name="delete">Delete</string>
+    <string name="destinations">Destinations</string>
 </resources>

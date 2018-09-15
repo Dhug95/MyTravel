@@ -102,7 +102,7 @@ public class TripPageActivity extends AppCompatActivity {
         return true;
     }
 
-    public void deleteTrip(View view) {
+    public void deleteTrip(MenuItem item) {
         new AlertDialog.Builder(this)
                 .setTitle("Confirm")
                 .setMessage("Do you really want to delete the trip?")

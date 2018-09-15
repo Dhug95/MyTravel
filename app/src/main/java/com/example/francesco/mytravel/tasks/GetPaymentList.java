@@ -1,6 +1,7 @@
 package com.example.francesco.mytravel.tasks;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -106,6 +107,12 @@ public class GetPaymentList extends AsyncTask<String, Void, String> {
                 balance = balance - single_pay;
             }
         }
-        currentBalance.setText(Float.toString(balance));
+        if (balance >= 0.f) {
+            currentBalance.setTextColor(Color.GREEN);
+        } else {
+            currentBalance.setTextColor(Color.RED);
+
+        }
+        currentBalance.setText("Balance: " + Float.toString(balance));
     }
 }
