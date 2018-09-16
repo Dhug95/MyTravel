@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.francesco.mytravel.activities.DestPageActivity;
-import com.example.francesco.mytravel.activities.TripPageActivity;
+import com.example.francesco.mytravel.activities.NewDestPageActivity;
 import com.example.francesco.mytravel.utils.NetworkUtils;
 
 public class GetDestPage extends AsyncTask<String, Void, String> {
@@ -58,7 +57,7 @@ public class GetDestPage extends AsyncTask<String, Void, String> {
         Log.d("Dest page result: ", s);
 
         // Go to the dest page
-        Intent intent = new Intent(mContext, DestPageActivity.class);
+        Intent intent = new Intent(mContext, NewDestPageActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(TOKEN, token);
         intent.putExtra(TRIP_ID, trip_id);

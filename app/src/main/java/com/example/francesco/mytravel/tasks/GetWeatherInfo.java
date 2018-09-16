@@ -1,12 +1,16 @@
 package com.example.francesco.mytravel.tasks;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.francesco.mytravel.R;
+import com.example.francesco.mytravel.activities.NewDestPageActivity;
+import com.example.francesco.mytravel.fragments.CurrencyFragment;
 import com.example.francesco.mytravel.utils.NetworkUtils;
 
 import org.json.JSONArray;
@@ -14,26 +18,26 @@ import org.json.JSONObject;
 
 public class GetWeatherInfo extends AsyncTask<String, Void, String> {
 
+    private static final String COUNTRY_CODE =
+            "com.example.francesco.mytravel.extra.COUNTRY_CODE";
+
     private String latitude;
     private String longitude;
     private String APIKEY;
 
-    private TextView cityCountry;
-    private TextView weatherInfo;
-    private TextView temperature;
-    private TextView wind;
-
     private ImageView weatherImage;
+    private TextView countryCode;
+    private TextView statusInfo;
+    private TextView tempInfo;
+    private TextView windInfo;
 
-    private  TextView mCurrency;
-
-    public GetWeatherInfo(ImageView IV, TextView CC, TextView WI, TextView T, TextView W, TextView mC) {
-        weatherImage = IV;
-        cityCountry = CC;
-        weatherInfo = WI;
-        temperature = T;
-        wind = W;
-        mCurrency = mC;
+    public GetWeatherInfo(ImageView weatherImage, TextView countryCode,
+                          TextView statusInfo, TextView tempInfo, TextView windInfo) {
+        this.weatherImage = weatherImage;
+        this.countryCode = countryCode;
+        this.statusInfo = statusInfo;
+        this.tempInfo = tempInfo;
+        this.windInfo = windInfo;
     }
 
     @Override
@@ -66,13 +70,13 @@ public class GetWeatherInfo extends AsyncTask<String, Void, String> {
             String name = allInfo.getString("name");
 
             Log.d("WEATHER INFO: ", main_condition + " " +
-                condition_desc + " " + windSpeed + " " +
-                temp + " " + country);
+                    condition_desc + " " + windSpeed + " " +
+                    temp + " " + country);
 
-            cityCountry.setText(country);
-            weatherInfo.setText(main_condition + ", " + condition_desc);
-            temperature.setText(temp + " °C");
-            wind.setText(windSpeed + " km/h");
+            countryCode.setText(country);
+            statusInfo.setText(main_condition + ", " + condition_desc);
+            tempInfo.setText(temp + " °C");
+            windInfo.setText(windSpeed + " km/h");
 
             if (main_condition.equals("Clear")) {
                 weatherImage.setBackgroundResource(R.drawable.sun);
@@ -83,7 +87,7 @@ public class GetWeatherInfo extends AsyncTask<String, Void, String> {
             weatherImage.setVisibility(View.VISIBLE);
 
             Log.d("Weather info: ", "Finished");
-            new GetCountryCurrency(mCurrency).execute(country);
+
         } catch (Exception e) {
             Log.d("Exception: ", e.getMessage());
         }

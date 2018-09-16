@@ -11,10 +11,10 @@ import org.json.JSONObject;
 
 public class GetCountryCurrency extends AsyncTask<String, Void, String> {
 
-    private TextView mCurrency;
+    private TextView outputCode;
 
-    public GetCountryCurrency(TextView mCurrency) {
-        this.mCurrency = mCurrency;
+    public GetCountryCurrency(TextView outputCode) {
+        this.outputCode = outputCode;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class GetCountryCurrency extends AsyncTask<String, Void, String> {
             JSONObject firstCurrency = currencies.getJSONObject(0);
             String currencyCode = firstCurrency.getString("code");
 
-            mCurrency.setText(currencyCode);
+            outputCode.setText(currencyCode);
 
             Log.d("Currency info: ", "Finished");
         } catch (Exception e) {

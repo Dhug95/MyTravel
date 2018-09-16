@@ -16,8 +16,8 @@ import java.util.Map;
 
 public class NetworkUtils {
 
-    //private static final String RAILS_BASE_URL = "https://my-travel-backend.herokuapp.com/app"; // Base URI for the Node JS App
-    private static final String RAILS_BASE_URL = "http://192.168.1.3:8080/app"; // Base URI for the Node JS App
+    private static final String RAILS_BASE_URL = "https://my-travel-backend.herokuapp.com/app"; // Base URI for the Node JS App
+    //private static final String RAILS_BASE_URL = "http://192.168.1.3:8080/app"; // Base URI for the Node JS App
     private static final String EMAIL = "email";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -206,6 +206,14 @@ public class NetworkUtils {
         return sendRequest(builtURI, "GET");
     }
 
+    public static String getCountryCode(String latitude, String longitude, String APIKEY) {
+        String weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat=" +
+                latitude + "&lon=" + longitude + "&APPID=" + APIKEY + "&units=metric";
+        Uri builtURI = Uri.parse(weatherURL).buildUpon().build();
+
+        return sendRequest(builtURI, "GET");
+    }
+
     public static String getCountryCurrency(String countryCode) {
         String countryURL = "https://restcountries.eu/rest/v2/alpha/" + countryCode;
         Uri builtURI = Uri.parse(countryURL).buildUpon().build();
@@ -361,4 +369,5 @@ public class NetworkUtils {
 
         return JSONresponse;
     }
+
 }
