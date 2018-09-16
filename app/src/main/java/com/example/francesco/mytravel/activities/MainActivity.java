@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LoginButton login_button = (LoginButton) findViewById(R.id.fb_login_button);
-        login_button.setReadPermissions(Arrays.asList("email", "public_profile", "user_friends"));
+        login_button.setReadPermissions(Arrays.asList("email", "public_profile"));
         // If you are using in a fragment, call loginButton.setFragment(this);
 
         // Callback registration
