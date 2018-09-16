@@ -28,7 +28,6 @@ public class NetworkUtils {
     private static final String COUNTRY = "country";
     private static final String START = "start";
     private static final String END = "end";
-    private static final String IMAGE = "image";
     private static final String TRIP_ID = "trip_id";
     private static final String DEST_ID = "dest_id";
     private static final String PAYMENT_ID = "payment_id";
@@ -68,27 +67,14 @@ public class NetworkUtils {
         return sendRequest(builtURI, "GET");
     }
 
-    public static String getTripResponse(String name, String start, String end, String token, String image) {
+    public static String getTripResponse(String name, String start, String end, String token) {
 
-        Uri builtURI;
-
-        if (image != null) {
-            //Build up your query URI
-            builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
-                    .appendQueryParameter(NAME, name)
-                    .appendQueryParameter(START, start)
-                    .appendQueryParameter(END, end)
-                    .appendQueryParameter(TOKEN, token)
-                    .appendQueryParameter(IMAGE, image)
-                    .build();
-        } else {
-            builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
-                    .appendQueryParameter(NAME, name)
-                    .appendQueryParameter(START, start)
-                    .appendQueryParameter(END, end)
-                    .appendQueryParameter(TOKEN, token)
-                    .build();
-        }
+        Uri builtURI = Uri.parse(RAILS_BASE_URL + "/trips").buildUpon()
+                .appendQueryParameter(NAME, name)
+                .appendQueryParameter(START, start)
+                .appendQueryParameter(END, end)
+                .appendQueryParameter(TOKEN, token)
+                .build();
 
         return sendRequest(builtURI, "POST");
     }
