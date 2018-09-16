@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.NewDestPageActivity">
+
+    <TextView
+        android:id="@+id/country_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/it"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/weather_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sun"
+        android:contentDescription="@string/todo"
+        android:padding="@dimen/small_padding"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/weather_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/weather_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:text="@string/weather"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/weather_status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_image" />
+
+    <TextView
+        android:id="@+id/weather_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/weather_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_title" />
+
+    <View
+        android:id="@+id/weather_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/weather_status"
+        android:background="@color/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@id/status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_status" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        android:text="@string/status"
+        android:textColor="@color/colorProfile"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/weather_temp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_line" />
+
+    <TextView
+        android:id="@+id/weather_temp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/status"
+        android:padding="@dimen/small_padding"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/temp_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/status" />
+
+    <View
+        android:id="@+id/temp_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/weather_temp"
+        android:background="@color/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@id/temperature"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_temp" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        android:text="@string/temperature"
+        android:textColor="@color/colorProfile"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/weather_wind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temp_line" />
+
+    <TextView
+        android:id="@+id/weather_wind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temperature"
+        android:padding="@dimen/small_padding"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/wind_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <View
+        android:id="@+id/wind_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@id/wind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_wind" />
+
+    <TextView
+        android:id="@+id/wind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="@dimen/small_padding"
+        android:text="@string/wind"
+        android:textColor="@color/colorProfile"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wind_line" />
+
+</android.support.constraint.ConstraintLayout>
